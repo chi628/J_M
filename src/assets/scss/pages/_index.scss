@@ -1,0 +1,170 @@
+.banner {
+    img {
+        max-width: 100vw;
+    }
+}
+
+.ads {
+    @include margin(top, 30px);
+
+    @include phone-width {
+        flex-direction: column;
+
+        .moblie-dn {
+            display: none;
+        }
+
+    }
+
+    .content {
+        width: 600px;
+        @include padding(top, 10px);
+        @include padding(bottom, 10px);
+        @include padding(left, 10px);
+        @include padding(right, 10px);
+
+        @include pad-width {
+            flex-direction: column;
+            align-items: flex-end;
+
+        }
+
+        @include phone-width {
+            width: 100vw;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        h2 {
+            font-size: 28px;
+            font-weight: 500;
+            line-height: 1.2;
+
+            @include pad-width {
+                font-size: 26px;
+
+            }
+
+            @include phone-width {
+                font-size: 24px;
+
+            }
+
+            span {
+                font-size: 20px;
+
+                @include pad-width {
+                    font-size: 18px;
+
+                }
+
+                @include phone-width {
+                    font-size: 16px;
+
+                }
+            }
+        }
+
+        p {
+            @include margin(top, 10px);
+
+            .code {
+                font-size: 20px;
+                font-style: italic;
+                font: 500px;
+                color: $error-red;
+            }
+
+            @include phone-width {
+                font-size: 14px;
+            }
+        }
+
+        button {
+            width: 150px;
+            height: 50px;
+            border-radius: 5px;
+            background-color: $main-color;
+            color: $merino;
+
+            &:hover {
+                background-color: $merino;
+                border: 1px solid $darker-merino;
+                color: $main-color;
+                transition: 0.2s ease-in-out;
+                height: 55px;
+            }
+
+            @include pad-width {
+                @include margin(top, 10px);
+            }
+
+            @include phone-width {
+                @include margin(top, 10px);
+            }
+
+        }
+    }
+
+    &_img {
+        width: 600px;
+        @include padding(top, 10px);
+        @include padding(bottom, 10px);
+        @include padding(left, 10px);
+        @include padding(right, 10px);
+
+        img {
+            width: 100%;
+            border-radius: 5px;
+            box-shadow: 1px 1px 2px $box-shadow;
+        }
+
+        @include phone-width {
+            max-width: 100vw;
+        }
+    }
+
+    @include pad-width {
+        @include padding(left, 15px);
+        @include padding(right, 15px);
+    }
+
+    @include phone-width {
+        @include padding(left, 15px);
+        @include padding(right, 15px);
+    }
+}
+
+.category {
+    @include margin(top, 30px);
+
+    h2 {
+        font-size: 24px;
+        font-weight: 500;
+    }
+
+    .item {
+        @include margin(right, 15px);
+        @include margin(left, 15px);
+        @include margin(top, 25px);
+
+        img {
+            border-radius: 5px;
+            box-shadow: 1px 1px 2px $box-shadow;
+
+            @include pad-width {
+                max-width: 40vw;
+            }
+
+            @include phone-width {
+                max-width: 90vw;
+            }
+        }
+
+        h3 {
+            @include padding(top, 5px);
+            font-size: 18px;
+            font-weight: 500;
+        }
+    }
+}

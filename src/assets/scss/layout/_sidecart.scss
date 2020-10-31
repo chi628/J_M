@@ -1,0 +1,188 @@
+.sidecart {
+    max-width: 400px;
+    height: 100vh;
+    position: fixed;
+    right: 0;
+    transition: right .8s ease;
+    background-color: #fff;
+    border: 1px solid $main-color;
+    box-shadow: 2px 2px 4px $box-shadow;
+    @include padding(left, 10px);
+    @include padding(right, 10px);
+}
+
+.cart_header {
+    @include padding(top, 10px);
+    @include padding(bottom, 5px);
+    max-width: 380px;
+    margin: 0 auto;
+    border-bottom: 1px solid $lighter-brown;
+
+    h3 {
+        font-size: 18px;
+        font-weight: 500;
+
+        span {
+            @include padding(left, 10px);
+            @include padding(right, 10px);
+            font-size: 16px;
+        }
+    }
+
+    .closebtn {
+        background-color: #fff;
+        border: none;
+        font-size: 20px;
+    }
+}
+
+.cart_body {
+    height: 80vh;
+    overflow-y: scroll;
+}
+
+.items {
+    box-shadow: 1px 1px 2px $box-shadow;
+    @include margin(top, 20px);
+    @include margin(bottom, 20px);
+
+    .content {
+        border: 1px solid $main-color;
+        @include padding(left, 10px);
+        @include padding(right, 10px);
+
+        max-width: 380px;
+
+        .img {
+            @include padding(top, 10px);
+            @include padding(bottom, 10px);
+            max-width: 100px;
+
+            img {
+                width: 100%;
+            }
+        }
+
+        .detail {
+            @include margin(top, 10px);
+            @include margin(bottom, 10px);
+            width: 180px;
+
+            h2 {
+                font-size: 18px;
+                font-weight: 500;
+            }
+
+            p {
+                font-size: 16px;
+            }
+
+            .price {
+                font-size: 16px;
+                font-weight: 500;
+
+                &::before {
+                    content: 'NT. ';
+                }
+            }
+        }
+    }
+
+    .update {
+        border-left: 1px solid $main-color;
+        border-right: 1px solid $main-color;
+        border-bottom: 1px solid $main-color;
+        @include padding(top, 5px);
+        @include padding(bottom, 5px);
+
+        button {
+            border: none;
+            background-color: #fff;
+            font-size: 18px;
+
+            @include phone-width {
+                width: 10px;
+            }
+        }
+
+        .quantity {
+            position: relative;
+
+            input {
+                border: none;
+                color: $main-color;
+
+                @include phone-width {
+                    width: 140px;
+                }
+            }
+
+            &::before {
+                content: '';
+                position: absolute;
+                // width: 30px;
+                height: 35px;
+                border: 1px solid $main-color;
+                top: -5px;
+                right: -5px;
+
+                @include phone-width {
+                    right: -15px;
+                }
+            }
+        }
+
+        .remove {
+            button {
+                width: 120px;
+                font-size: 14px;
+                text-decoration: underline;
+
+                @include phone-width {
+                    position: relative;
+                    width: 100px;
+                    right: -25px;
+                }
+            }
+        }
+    }
+}
+
+.cart_footer {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    // border: 1px solid $main-color;
+    box-shadow: 1px 0 2px $box-shadow;
+    background-color: #fff;
+    @include padding(top, 10px);
+
+    .total {
+        @include padding(left, 10px);
+        @include padding(right, 10px);
+        font-weight: 500;
+
+        label {
+            font-size: 18px;
+        }
+
+        span ::before {
+            content: 'NT. ';
+        }
+    }
+
+    .checkout {
+        @include padding(top, 10px);
+        @include padding(bottom, 10px);
+
+        button {
+            width: 300px;
+            height: 40px;
+            font-size: 16px;
+            background-color: $main-color;
+            color: #fff;
+        }
+    }
+
+}
