@@ -1,5 +1,5 @@
 <template>
-  <div class="sidecart" :class="{close:closeCart}">
+  <div class="sidecart" :class="{show:showCart,close:closeCart}">
     <loading loader="dots" :active.sync="isLoading"></loading>
     <div class="cart_header df jc-sb">
       <h3>Cart<span>({{cartLength}}items)</span></h3>
@@ -56,6 +56,7 @@ export default {
   data() {
     return {
       isLoading: false,
+      showCart: false,
       closeCart: false,
       cartLength: 0,
       carts: [],
@@ -83,7 +84,7 @@ export default {
     },
     updateCart(id, num) {
       this.isLoading = true;
-      const url = `${process.env.VUE_APP_ApiPath}/api/${process.env.VUE_APP_UUID}/ec/shopping`;
+      const url = `${process.env.VUE_APP_ApiPath}/api/${process.env.VUE_APP_UUID11}/ec/shopping`;
       const data = {
         product: id,
         quantity: num,
