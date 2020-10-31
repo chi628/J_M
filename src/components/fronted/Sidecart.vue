@@ -1,32 +1,39 @@
 <template>
-  <div class="sidecart">
+  <div class="sidecart" :class="{close:closeCart}">
     <loading loader="dots" :active.sync="isLoading"></loading>
     <div class="cart_header df jc-sb">
       <h3>Cart<span>({{cartLength}}items)</span></h3>
-      <button type="button" class="closebtn">&times;</button>
+      <button type="button" class="closebtn"
+        @click="closeCart=true">&times;</button>
     </div>
     <div class="cart_body">
       <div class="items" v-for="item in carts" :key="item.id">
         <div class="content df jc-sb">
           <div class="img df jc-c ai-c">
-            <router-link to="">
+            <router-link to="/">
               <img :src="`${item.product.imageUrl[0]}`" alt="">
             </router-link>
           </div>
           <div class="detail df fxd-c ai-c">
-            <h2>{{item.product.title}}</h2>
+            <router-link to="/">
+            <h2>{{item.product.title}}</h2></router-link>
             <p>{{item.product.title}}</p>
             <p class="price">{{item.product.price}}</p>
           </div>
         </div>
         <div class="update df">
           <div class="quantity">
-            <button type="button" class="">-</button>
+            <button
+              type="button"
+              :disabled="item.quantity === 1"
+              @click="updateCart(item.product.id, item.quantity-1)">-</button>
             <input type="number" :value="item.quantity" class="ta-c">
-            <button type="button" class="">+</button>
+            <button
+             type="button"
+             @click="updateCart(item.product.id, item.quantity+1)">+</button>
           </div>
           <div class="remove df jc-c">
-            <button type="button" class="ta-c">Remove</button>
+            <button type="button" class="ta-c" @click="removeItem(item.product.id)">Remove</button>
           </div>
         </div>
       </div>
@@ -49,9 +56,11 @@ export default {
   data() {
     return {
       isLoading: false,
+      closeCart: false,
       cartLength: 0,
       carts: [],
       subtotal: 0,
+      err_data: '',
     };
   },
   methods: {
@@ -67,8 +76,36 @@ export default {
         });
         this.isLoading = false;
       }).catch((err) => {
+        this.err_data = err.response.data.message;
+        this.$bus.$emit('error', this.err_data);
         this.isLoading = false;
-        console.log(err);
+      });
+    },
+    updateCart(id, num) {
+      this.isLoading = true;
+      const url = `${process.env.VUE_APP_ApiPath}/api/${process.env.VUE_APP_UUID}/ec/shopping`;
+      const data = {
+        product: id,
+        quantity: num,
+      };
+      this.axios.patch(url, data).then(() => {
+        this.getCart();
+        this.isLoading = false;
+      }).catch((err) => {
+        this.err_data = err.response.data.message;
+        this.$bus.$emit('error', this.err_data);
+        this.isLoading = false;
+      });
+    },
+    removeItem(id) {
+      this.isLoading = true;
+      const url = `${process.env.VUE_APP_ApiPath}/api/${process.env.VUE_APP_UUID}/ec/shopping/${id}`;
+      this.axios.delete(url).then(() => {
+        this.getCart();
+        this.isLoading = false;
+      }).catch((err) => {
+        this.err_data = err.response.data.message; this.$bus.$emit('error', this.err_data);
+        this.isLoading = false;
       });
     },
   },

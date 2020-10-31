@@ -25,6 +25,11 @@ button {
     &:hover {
         cursor: pointer;
     }
+
+    &:disabled {
+        cursor: not-allowed;
+        color: $grey;
+    }
 }
 
 button:active,

@@ -10,6 +10,7 @@ import App from './Home.vue';
 import router from './router';
 
 Vue.config.productionTip = false;
+Vue.prototype.$bus = new Vue();
 
 localize('zh_TW', tw);
 Vue.use(VueAxios, axios);

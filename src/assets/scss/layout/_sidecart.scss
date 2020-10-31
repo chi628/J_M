@@ -2,13 +2,19 @@
     max-width: 400px;
     height: 100vh;
     position: fixed;
+    top: 0;
     right: 0;
+    // right: -430px;
     transition: right .8s ease;
     background-color: #fff;
     border: 1px solid $main-color;
     box-shadow: 2px 2px 4px $box-shadow;
     @include padding(left, 10px);
     @include padding(right, 10px);
+
+    &.close {
+        right: -430px;
+    }
 }
 
 .cart_header {
