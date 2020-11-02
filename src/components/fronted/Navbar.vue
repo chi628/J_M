@@ -69,7 +69,7 @@
           </router-link>
         </li>
         <li>
-          <router-link to="">
+          <router-link to="/products/all">
             <span>All Items</span>
             <span>全部商品</span>
           </router-link>

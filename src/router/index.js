@@ -18,7 +18,12 @@ const routes = [
       {
         path: 'about',
         name: 'About',
-        component: () => import('@/views/fronted/layout/About.vue'),
+        component: () => import('@/views/fronted/page/About.vue'),
+      },
+      {
+        path: 'products/:category',
+        name: 'Products',
+        component: () => import('@/views/fronted/page/Products.vue'),
       },
     ],
   },
