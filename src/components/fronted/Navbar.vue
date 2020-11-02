@@ -63,7 +63,7 @@
     <nav class="nav df jc-fe ai-c">
       <ul class="menu df" :class="{show:ham}">
         <li>
-          <router-link to="">
+          <router-link to="/about">
             <span>About J&amp;M</span>
             <span>品牌故事</span>
           </router-link>

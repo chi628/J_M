@@ -1,0 +1,46 @@
+.intro {
+    width: 1024px;
+    margin: 10px auto;
+    padding: 10px;
+    box-shadow: 1px 1px 3px $box-shadow;
+
+    h2 {
+        font-size: 26px;
+        font-weight: 500;
+        line-height: 2;
+    }
+
+    .content {
+        width: 68%;
+    }
+
+    @include pad-width {
+        max-width: 100vw;
+    }
+
+    @include phone-width {
+        max-width: 100vw;
+        flex-direction: column;
+
+        .mobile_dn {
+            display: none;
+        }
+
+        .content {
+            width: 90vw;
+            font-size: 14px;
+            line-height: 2;
+            text-align: left;
+        }
+    }
+}
+
+
+.img_about {
+
+    img {
+        max-width: 100%;
+        border-radius: 5px;
+        box-shadow: 1px 0 1px $box-shadow;
+    }
+}

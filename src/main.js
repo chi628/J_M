@@ -6,7 +6,7 @@ import 'vue-loading-overlay/dist/vue-loading.css';
 import { ValidationProvider, ValidationObserver, localize } from 'vee-validate/dist/vee-validate.full.esm';
 import tw from 'vee-validate/dist/locale/zh_TW.json';
 // import VueI18n from 'vue-i18n';
-import App from './Home.vue';
+import App from './App.vue';
 import router from './router';
 
 Vue.config.productionTip = false;
