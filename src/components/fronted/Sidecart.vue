@@ -70,6 +70,7 @@ export default {
       const url = `${process.env.VUE_APP_ApiPath}/api/${process.env.VUE_APP_UUID}/ec/shopping`;
       this.axios.get(url).then((res) => {
         this.cartLength = res.data.data.length;
+        this.$bus.$emit('cartlength', this.cartLength);
         this.carts = res.data.data;
         this.subtotal = 0;
         this.carts.forEach((item) => {
@@ -112,6 +113,16 @@ export default {
   },
   created() {
     this.getCart();
+    this.$bus.$on('showcart', () => {
+      this.showCart = true;
+    });
+    this.$bus.$on('closecart', () => {
+      this.showCart = false;
+    });
+  },
+  beforeDestroy() {
+    this.$bus.$off('showcart');
+    this.$bus.$off('closecart');
   },
 };
 

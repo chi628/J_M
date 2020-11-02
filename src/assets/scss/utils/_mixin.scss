@@ -1,15 +1,12 @@
-$pc-media:1200px;
-$pcs-media:1024px;
-$pad-media:768px;
-$pads-media:767px;
-$phone-media:480px;
-$phones-media:479px;
+$max-pad:1024px;
+$min-pad:768px;
+$phones-media:767px;
 
 
 
 //平板
 @mixin pad-width() {
-    @media all and (min-width:$pad-media) and (max-width: $pcs-media) {
+    @media all and (min-width:$min-pad) and (max-width: $max-pad) {
         @content;
     }
 }

@@ -4,6 +4,7 @@
     position: fixed;
     top: 0;
     right: -430px;
+    z-index: 1999;
     transition: right .8s ease;
     background-color: #fff;
     border: 1px solid $main-color;
