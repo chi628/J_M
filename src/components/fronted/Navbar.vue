@@ -1,5 +1,5 @@
 <template>
-  <header class="container header" :class="{ scroll: scroll }">
+  <header class="header" :class="{ scroll: scroll }">
     <div class="logo df jc-c ai-c">
       <div class="ham" :class="{ show: ham }" @click="ham=!ham">
         <span></span>
