@@ -16,13 +16,13 @@
           </div>
           <div class="detail df fxd-c ai-c">
             <router-link to="/">
-            <h2>{{item.product.title}}</h2></router-link>
+            <h4>{{item.product.title}}</h4></router-link>
             <p>{{item.product.title}}</p>
             <p class="price">{{item.product.price}}</p>
           </div>
         </div>
         <div class="update df">
-          <div class="quantity">
+          <div class="cart_quantity">
             <button
               type="button"
               :disabled="item.quantity === 1"

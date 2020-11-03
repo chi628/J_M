@@ -4,7 +4,7 @@
     <Sidecart/>
     <Toast/>
         <router-view ></router-view>
-    <Footer/>
+    <Footer class="footer"/>
   </div>
 </template>
 <script>
@@ -22,3 +22,10 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+  // .footer{
+  //   position: fixed;
+  //   bottom: 0;
+  //   width: 100vw;
+  // }
+</style>

@@ -38,10 +38,10 @@
         </div>
       </div>
     </div>
-    <div class="category">
+    <div class="index_category">
       <h2 class="ta-c">商品介紹</h2>
       <div class="df jc-c fxw-w">
-        <div class="item">
+        <div class="index_item">
           <div>
             <router-link to="/products/oil">
               <img
@@ -54,7 +54,7 @@
             </router-link>
           </h3>
         </div>
-        <div class="item">
+        <div class="index_item">
           <div>
             <router-link to="/products/sprayer">
               <img
@@ -67,7 +67,7 @@
             </router-link>
           </h3>
         </div>
-        <div class="item">
+        <div class="index_item">
           <div>
             <router-link to="/products/candle">
               <img
@@ -80,7 +80,7 @@
             </router-link>
           </h3>
         </div>
-        <div class="item">
+        <div class="index_item">
           <div>
             <router-link to="/products/jar">
               <img

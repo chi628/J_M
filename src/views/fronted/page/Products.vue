@@ -10,7 +10,7 @@
       </div>
       <div class="item-body ta-c">
         <router-link :to="`/product/${item.id}`">
-          <h2>{{item.title}}</h2>
+          <h4>{{item.title}}</h4>
         </router-link>
         <p>NT.{{item.price}}</p>
       </div>

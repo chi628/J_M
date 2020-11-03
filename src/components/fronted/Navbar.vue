@@ -107,7 +107,7 @@
           </router-link>
         </li>
         <li>
-          <router-link to="">
+          <router-link to="/reserve">
             <span>reservation</span>
             <span>預約手作</span>
           </router-link>

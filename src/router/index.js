@@ -30,6 +30,11 @@ const routes = [
         name: 'Product',
         component: () => import('@/views/fronted/page/Product.vue'),
       },
+      {
+        path: 'reserve',
+        name: 'Reserve',
+        component: () => import('@/views/fronted/page/Reserve.vue'),
+      },
     ],
   },
   {

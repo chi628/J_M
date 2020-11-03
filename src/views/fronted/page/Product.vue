@@ -6,7 +6,7 @@
       <div class="product_detail">
         <div class="">
           <div>
-            <h2>{{product.title}}</h2>
+            <h4>{{product.title}}</h4>
             <p>NT.{{product.price}}</p>
             <p>容量:
                 <button type="button">30 ml</button>

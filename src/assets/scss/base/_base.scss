@@ -22,6 +22,18 @@ a {
     color: $main-color;
 }
 
+h2 {
+    font-size: 28px;
+    line-height: 2;
+    font-weight: 500;
+}
+
+h3 {
+    font-size: 24px;
+    line-height: 2;
+    font-weight: 500;
+}
+
 button {
     border: 1px solid $main-color;
     background-color: white;
@@ -40,8 +52,15 @@ button {
 button:active,
 button:focus,
 input:active,
-input:focus {
+input:focus,
+select:active,
+select:focus {
     outline: none
+}
+
+input:active:placeholder,
+input:focus:placeholder {
+    // background-color: white
 }
 
 .container {

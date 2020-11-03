@@ -1,0 +1,106 @@
+.reserve_container {
+    max-width: 700px;
+    margin: 30px auto;
+    border: 1px solid $main-color;
+    background-color: $merino;
+    box-shadow: 1px 1px 2px $box-shadow;
+    border-radius: 5px;
+    padding: 10px;
+
+
+    @include phone-width {
+        max-width: 90%;
+    }
+}
+
+.rule {
+    border: 1px solid $second-color;
+    background-color: #fff;
+    border-radius: 5px;
+    max-width: 85%;
+    margin: 0 auto;
+    padding: 10px;
+
+    @include phone-width {
+
+        li {
+
+            &:nth-child(2),
+            &:nth-child(3) {
+                display: none;
+            }
+
+            &:nth-child(4) {
+                font-size: 14px;
+                font-weight: 500;
+                color: $error-red;
+            }
+        }
+
+    }
+}
+
+.reserve-form {
+    border: 1px solid $second-color;
+    border-radius: 5px;
+    max-width: 85%;
+    margin: 20px auto;
+    padding: 10px;
+    box-shadow: 1px 1px 1px $box-shadow;
+
+    @include phone-width {
+        padding: 5px 0;
+    }
+
+    label {
+        display: block;
+    }
+
+    .label {
+        width: 70%;
+        margin: 0 auto;
+
+        @include phone-width {
+            width: 80%;
+        }
+    }
+
+    input,
+    select {
+        height: 30px;
+        width: 100%;
+        border: 1px solid $main-color;
+        border-radius: 3px;
+        @include padding(left, 5px);
+        @include margin(bottom, 5px);
+
+        @include phone-width {
+            width: 100%;
+            padding: 0;
+        }
+    }
+
+    .reserve-btn {
+        width: 70%;
+        height: 45px;
+        margin: 20px auto;
+        border-radius: 5px;
+        border: 2px solid $main-color;
+
+        &:disabled {
+            border: 1px solid $grey;
+            color: $grey;
+        }
+
+        @include phone-width {
+            width: 80%;
+        }
+    }
+
+    .errmsg {
+        display: block;
+        font-size: 14px;
+        color: $error-red;
+        @include margin(bottom, 5px);
+    }
+}
