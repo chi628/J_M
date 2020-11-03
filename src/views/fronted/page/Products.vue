@@ -1,14 +1,15 @@
 <template>
   <div class="container products df fxw-w">
+    <loading loader="dots" :active.sync="isLoading"></loading>
     <div v-for="item in products" :key="item.id" class="item">
       <div class="item-header">
-        <router-link to="">
+        <router-link :to="`/product/${item.id}`">
           <img class="df" :src="`${item.imageUrl[0]}`" alt="">
           <button type="button" class="view_btn">Quick View</button>
         </router-link>
       </div>
       <div class="item-body ta-c">
-        <router-link to="">
+        <router-link :to="`/product/${item.id}`">
           <h2>{{item.title}}</h2>
         </router-link>
         <p>NT.{{item.price}}</p>
@@ -35,6 +36,7 @@ export default {
       this.axios.get(url)
         .then((res) => {
           this.products = res.data.data;
+          this.isLoading = false;
         }).catch((err) => {
           this.err_data = err.response.data.message;
           this.$bus.$emit('error', this.err_data);
