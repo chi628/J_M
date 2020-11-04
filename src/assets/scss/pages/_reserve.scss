@@ -1,9 +1,9 @@
 .reserve_container {
     max-width: 700px;
     margin: 30px auto;
-    border: 1px solid $main-color;
-    background-color: $merino;
-    box-shadow: 1px 1px 2px $box-shadow;
+    // border: 1px solid $main-color;
+    // background-color: $merino;
+    // box-shadow: 1px 1px 2px $box-shadow;
     border-radius: 5px;
     padding: 10px;
 
@@ -42,6 +42,7 @@
 
 .reserve-form {
     border: 1px solid $second-color;
+    background-color: $merino;
     border-radius: 5px;
     max-width: 85%;
     margin: 20px auto;

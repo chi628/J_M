@@ -12,10 +12,6 @@
     @include padding(left, 10px);
     @include padding(right, 10px);
 
-    &.close {
-        right: -430px;
-    }
-
     &.show {
         right: 0;
     }

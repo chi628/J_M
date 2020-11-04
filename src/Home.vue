@@ -24,7 +24,7 @@ export default {
 </script>
 <style lang="scss">
   // .footer{
-  //   position: fixed;
+  //   position: sticky;
   //   bottom: 0;
   //   width: 100vw;
   // }

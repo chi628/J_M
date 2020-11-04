@@ -2,55 +2,71 @@
     position: sticky;
     top: 0;
     z-index: 1999;
-    background-color: #fff;
     max-width: 100vw;
+    padding: 10px 0;
+    background-color: #fff;
 
     &.scroll {
-        position: sticky;
-        z-index: 1999;
-        transition: .5s linear;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        box-shadow: 1px 0px 1px $box-shadow;
+        transition: .3s linear;
+        flex-direction: row;
+        padding: 5px 15px;
+        box-shadow: 1px 1px 2px $box-shadow;
+
+        .logo {
+            h1 {
+                font-size: 38px;
+            }
+        }
 
         @include pad-width {
-            display: block;
+
+            .menu,
+            .showMenu {
+                top: 67px;
+            }
         }
+
+        @include phone-width {
+            .logo {
+                h1 {
+                    font-size: 26px;
+                }
+            }
+
+            .menu,
+            .showMenu {
+                top: 49px;
+            }
+
+            padding: 5px 10px;
+        }
+    }
+
+    button {
+        border: none;
+    }
+
+    @include pad-width {
+        flex-direction: row;
+        max-width: 100vw;
+        @include padding(left, 10px);
+    }
+
+    @include phone-width {
+        flex-direction: row;
+        max-width: 100vw;
+        @include padding(left, 10px);
     }
 }
 
 .logo {
-    position: relative;
-    max-width: 100vw;
-
-    @include pad-width {
-        justify-content: space-between;
-    }
-
-    @include phone-width {
-        justify-content: space-between;
-    }
-
-    h1 {
-        @include padding(top, 10px);
-        font-size: $logo-fz;
-        font-family: $logo-font;
-
-        @include phone-width {
-            width: calc(100vw/3);
-            font-size: 28px;
-        }
-    }
 
     .ham {
         display: none;
-        transition: 0.3s ease-in-out;
-        margin-left: 15px;
-        width: calc(100vw/3);
 
         span {
             display: block;
+            transition: 0.15s linear;
             margin-bottom: 5px;
             width: 22px;
             height: 2px;
@@ -78,6 +94,10 @@
             }
         }
 
+        &:hover {
+            cursor: pointer;
+        }
+
         @include pad-width {
             display: block;
         }
@@ -87,377 +107,365 @@
         }
     }
 
-    .mobile-icons-header {
-        display: none;
-
-        @include pad-width {
-            display: flex;
-            align-items: center;
-        }
-
-        @include phone-width {
-            // position: relative;
-            display: flex;
-
-
-            &>:nth-child(1) {
-                position: relative;
-                @include margin(right, 5px);
-
-                input {
-                    max-width: calc(100vw/3);
-                }
-
-                button {
-                    position: absolute;
-                    font-size: 16px;
-                    right: 5px;
-                    top: 5px;
-                }
-            }
-
-            &>:nth-child(2),
-            &>:nth-child(3) {
-                display: none;
-            }
-
-        }
+    @include pad-width {
+        width: 50vw;
+        justify-content: space-between;
     }
 
+    @include phone-width {
+        width: 55vw;
+        justify-content: space-between;
+
+        h1 {
+            font-size: 28px;
+        }
+    }
 }
 
 .nav {
-    width: 1200px;
-    margin: 0 auto;
-    // border: 1px solid red;
-    @include margin(bottom, 10px);
+    margin: 10px auto;
+    width: 100%;
 
-    @include pad-width {
-        max-width: 100vw;
-    }
+    .menu {
+        @include margin(right, 25px);
 
-    @include phone-width {
-        max-width: 100vw;
-    }
-}
+        li {
+            padding: 0 25px;
+            height: 30px;
+            overflow: hidden;
 
-.menu {
-    li {
-        @include margin(right, 45px);
-        height: 30px;
-        overflow: hidden;
+            a {
+                display: flex;
+                flex-direction: column;
 
-        @include pad-width {
-            // @include margin(right, 25px);
+                span {
+                    transition: 0.3s ease-in-out;
+                    text-align: center;
+                    @include padding(top, 5px);
+                }
+
+                &:hover {
+                    &>span:nth-child(1) {
+                        transform: scaleY(0) translateY(-30px);
+                    }
+
+                    &>span:nth-child(2) {
+                        transform: translateY(-30px);
+                    }
+                }
+            }
         }
 
-        a {
-            display: flex;
-            flex-direction: column;
+        //類別
+        &>:nth-child(3) {
 
-            span {
-                transition: 0.3s ease-in-out;
-                text-align: center;
-                @include padding(top, 5px);
+            position: relative;
+
+            ul {
+                border: 1px solid $main-color;
+                background-color: $darker-merino;
+                box-shadow: 1px 1px 2px $box-shadow;
+                position: absolute;
+                top: 40px;
+                left: -10px;
+                width: 170px;
+                max-width: 200px;
+
+                &::before {
+                    //偽元素製作三角形
+                    display: block;
+                    content: "";
+                    height: 15px;
+                    width: 15px;
+                    background-color: $darker-merino;
+                    border-bottom: 1px solid $second-color;
+                    border-right: 1px solid $second-color;
+                    position: absolute;
+                    top: -8px;
+                    left: 70px;
+                    transform: rotate(-135deg);
+                }
+
+                li {
+                    padding: 0 10px;
+                    margin: 5px 0;
+                }
+
+                li+li::before {
+                    display: block;
+                    position: absolute;
+                    content: "";
+                    width: 150px;
+                    border: 1px solid $brown;
+                    box-shadow: 1px 0 1px $lighter-brown;
+                    left: 10px;
+                }
             }
 
             &:hover {
-                &>span:nth-child(1) {
-                    transform: scaleY(0) translateY(-30px);
-                }
+                overflow: visible;
 
-                &>span:nth-child(2) {
-                    transform: translateY(-30px);
+                &>a {
+                    &>span:nth-child(1) {
+                        transform: scaleY(0) translateY(-30px);
+                    }
+
+                    &>span:nth-child(2) {
+                        transform: translateY(-30px);
+                    }
                 }
             }
         }
 
-    }
-
-    &>:nth-child(3) {
-        position: relative;
-
-        ul {
-            border: 1px solid $main-color;
-            background-color: $darker-merino;
-            box-shadow: 1px 1px 2px $box-shadow;
+        @include pad-width {
             position: absolute;
-            top: 40px;
-            left: -50px;
-            max-width: 200px;
+            top: 83px;
+            left: -330px;
+            z-index: 1999;
+            width: 310px;
+            height: 100vh;
+            flex-direction: column;
+            background-color: $merino;
+            border: 1px solid $darker-merino;
+            box-shadow: 1px 1px 2px $box-shadow;
+            transition: .1s linear;
 
-            &::before {
-                //偽元素製作三角形
-                display: block;
-                content: "";
-                height: 15px;
-                width: 15px;
-                background-color: $darker-merino;
-                border-bottom: 1px solid $second-color;
-                border-right: 1px solid $second-color;
-                position: absolute;
-                top: -8px;
-                left: 80px;
-                transform: rotate(-135deg);
+            &.show {
+                left: 0;
             }
 
             li {
-                position: relative;
-                text-align: center;
-                width: 200px;
-                @include margin(top, 5px);
-                @include margin(bottom, 5px);
-                @include padding(left, 24px);
-                @include padding(right, 24px);
+                margin: 5px 0;
             }
 
             li+li::before {
                 display: block;
                 position: absolute;
                 content: "";
-                width: 180px;
-                background-color: $main-color;
-                border: 1px solid $second-color;
-                box-shadow: 1px 0 1px $box-shadow;
-                left: 10px;
+                width: 250px;
+                border: 1px solid $darker2-merino;
+                box-shadow: 1px 0 1px $lighter-brown;
+                left: 20px;
             }
 
+            &>:nth-child(3) {
+
+                ul {
+                    display: block;
+                    width: 100%;
+                    left: 55px;
+                    top: 35px;
+
+                    &::before {
+                        display: none;
+                    }
+                }
+
+                &:hover {
+                    height: 190px;
+                }
+            }
         }
 
-        &:hover {
-            overflow: visible;
+        @include phone-width {
+            position: absolute;
+            top: 62px;
+            left: -330px;
+            z-index: 1999;
+            width: 310px;
+            height: 100vh;
+            flex-direction: column;
+            background-color: $merino;
+            border: 1px solid $darker-merino;
+            box-shadow: 1px 1px 2px $box-shadow;
+            transition: .1s linear;
+
+            &.show {
+                left: 0;
+            }
+
+            li {
+                margin: 5px 0;
+            }
+
+            li+li::before {
+                display: block;
+                position: absolute;
+                content: "";
+                width: 250px;
+                border: 1px solid $darker2-merino;
+                box-shadow: 1px 0 1px $lighter-brown;
+                left: 20px;
+            }
+
+            &>:nth-child(3) {
+
+                ul {
+                    display: block;
+                    width: 100%;
+                    left: 55px;
+                    top: 35px;
+
+                    &::before {
+                        display: none;
+                    }
+                }
+
+                &:hover {
+                    height: 190px;
+                }
+            }
         }
     }
 
-    @include pad-width {
-        position: fixed;
-        flex-direction: column;
-        left: -320px;
-        top: 70px;
-        z-index: 1999;
-        width: 310px;
-        height: 100vh;
-        overflow-y: scroll;
-        background-color: $merino;
-        box-shadow: 1px 1px 2px $box-shadow;
-        transition: 0.2s ease-in-out;
-
+    .icons {
         li {
-            @include margin(top, 15px);
-            width: 100%;
+            @include margin(right, 5px);
+
+            button {
+                font-size: 16px;
+
+                span {
+                    display: inline-block;
+                    background-color: $darker-merino;
+                    border-radius: 50%;
+                    width: 15px;
+                    height: 15px;
+                    font-size: 8px;
+                    transform: translateX(-4px) translateY(1px);
+                }
+            }
         }
 
-        &>:nth-child(3) {
-            ul {
-                display: block;
-                left: 55px;
-                top: 35px;
+        &>:nth-child(2) {
+            position: relative;
 
-                &::before {
-                    display: none;
+            &:hover {
+                ul {
+                    display: block;
                 }
             }
 
-            &:hover {
-                height: 190px;
-            }
-        }
-
-
-        &.show {
-            left: 0;
-        }
-    }
-
-    @include phone-width {
-        position: fixed;
-        flex-direction: column;
-        left: -320px;
-        top: 50px;
-        z-index: 1999;
-        width: 310px;
-        height: 100vh;
-        overflow-y: scroll;
-        background-color: $merino;
-        box-shadow: 1px 1px 2px $box-shadow;
-        transition: 0.2s ease-in-out;
-
-        li {
-            @include margin(top, 15px);
-            width: 100%;
-        }
-
-        &>:nth-child(3) {
             ul {
-                display: block;
-                left: 55px;
-                top: 35px;
+                position: absolute;
+                display: none;
+                top: 32px;
+                left: -80px;
+                width: 160px;
+                border: 1px solid $main-color;
+                background-color: $darker-merino;
+                box-shadow: 1px 1px 2px $box-shadow;
 
                 &::before {
-                    display: none;
+                    //偽元素製作三角形
+                    display: block;
+                    content: "";
+                    height: 15px;
+                    width: 15px;
+                    background-color: $darker-merino;
+                    border-bottom: 1px solid $second-color;
+                    border-right: 1px solid $second-color;
+                    position: absolute;
+                    top: -8px;
+                    left: 85px;
+                    transform: rotate(-135deg);
+                }
+
+                li {
+                    padding: 0 0 5px 10px;
+                    margin: 5px 0;
+                    height: 30px;
+                    overflow: hidden;
+
+                    a {
+                        display: flex;
+                        align-items: center;
+
+                        i {
+                            width: 35px;
+                            height: 35px;
+                        }
+
+                        span {
+                            transition: 0.3s ease-in-out;
+                            @include padding(top, 5px);
+                        }
+
+                        &:hover {
+                            span:nth-child(1) {
+                                transform: scaleY(0) translateY(-30px);
+                            }
+
+                            span:nth-child(2) {
+                                transform: translateY(-30px);
+                            }
+                        }
+                    }
+                }
+
+                li+li::before {
+                    display: block;
+                    position: absolute;
+                    content: "";
+                    width: 140px;
+                    border: 1px solid $brown;
+                    box-shadow: 1px 0 1px $lighter-brown;
+                    left: 10px;
                 }
             }
-
-            &:hover {
-                height: 190px;
-            }
         }
 
-
-        &.show {
-            left: 0;
-        }
-    }
-}
-
-.icons {
-    @include pad-width {
-        display: none;
-    }
-
-    @include phone-width {
-        display: none;
-    }
-
-    .pc-icons {
         @include pad-width {
+            @include margin(left, 40px);
+        }
+
+        @include phone-width {
             display: none;
         }
     }
 
-    li {
-        @include margin(left, 16px);
+    .mobile-icons {
+        visibility: hidden;
 
-        input {
-            border: 1px solid $main-color;
-            border-radius: 5px;
-            padding: 5px;
+        @include pad-width {
+            display: none;
         }
 
-        button {
-            border: none;
-            font-size: 18px;
+        @include phone-width {
+            @include padding(top, 5px);
+            @include padding(bottom, 5px);
+            visibility: visible;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100vw;
+            background-color: $darker-merino;
+
+            button {
+                background-color: $darker-merino;
+            }
 
             span {
                 display: inline-block;
-                width: 15px;
-                height: 15px;
-                background-color: $darker-merino;
+                background-color: $darker2-merino;
+                color: $main-color;
                 border-radius: 50%;
-                font-size: 8px;
-                line-height: 1;
-                text-align: center;
-                transform: translateX(-6px) translateY(1px);
-            }
-        }
-    }
-
-    &>:nth-child(2) {
-        // border: 1px solid red;
-        position: relative;
-
-        ul {
-            border: 1px solid $main-color;
-            background-color: $darker-merino;
-            box-shadow: 1px 1px 2px $box-shadow;
-            position: absolute;
-            max-width: 250px;
-            top: 35px;
-            left: -50px;
-            display: none;
-
-            &::before {
-                //偽元素製作三角形
-                display: block;
-                content: "";
-                height: 15px;
                 width: 15px;
-                background-color: $darker-merino;
-                border-bottom: 1px solid $second-color;
-                border-right: 1px solid $second-color;
-                position: absolute;
-                top: -8px;
-                left: 60px;
-                transform: rotate(-135deg);
-            }
-
-            li {
-                max-width: 200px;
-                height: 30px;
-                overflow: hidden;
-                @include margin(bottom, 5px);
-                @include margin(left, 5px);
-                @include margin(right, 5px);
-
-                a {
-                    display: flex;
-                    justify-content: center;
-
-                    i {
-                        width: 20px;
-                        height: 20px;
-                        @include margin(top, 10px);
-                        @include margin(left, 10px);
-                        @include margin(right, 5px);
-                    }
-
-                    span {
-                        width: 100px;
-                        text-align: center;
-                        transition: 0.3s ease-in-out;
-                        @include padding(top, 5px);
-                    }
-
-                    &:hover {
-                        span:nth-child(1) {
-                            transform: scaleY(0) translateY(-30px);
-                        }
-
-                        span:nth-child(2) {
-                            transform: translateY(-30px);
-                        }
-                    }
-                }
-            }
-
-            li+li::before {
-                display: block;
-                position: absolute;
-                content: "";
-                width: 130px;
-                border: 1px solid $second-color;
-                box-shadow: 1px 0 1px $box-shadow;
-                left: 10px;
-            }
-
-        }
-
-        &:hover {
-            ul {
-                display: block;
+                height: 15px;
+                font-size: 8px;
+                transform: translateX(-3px) translateY(1px);
             }
         }
     }
-}
 
-.mobile-icons-footer {
-    display: none;
-
-    button {
-        border: none;
-        background-color: $darker-merino;
+    @include pad-width {
+        max-width: 40vw;
+        align-items: flex-end;
     }
 
     @include phone-width {
-        @include padding(top, 5px);
-        @include padding(bottom, 5px);
-        position: fixed;
-        bottom: 0;
-        display: flex;
-        justify-content: space-around;
-        width: 100vw;
-        background-color: $darker-merino;
-
+        max-width: 0;
+        align-items: flex-end;
     }
 }
 
@@ -470,16 +478,16 @@
     right: 0;
     left: 0;
 
-    &.show {
+    &.showCart {
         display: block;
     }
 
-    &.menu_show {
+    &.showMenu {
         display: block;
-        top: 70px;
+        top: 83px;
 
         @include phone-width {
-            top: 50px;
+            top: 62px;
         }
     }
 }

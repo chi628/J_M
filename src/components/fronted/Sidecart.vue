@@ -1,10 +1,10 @@
 <template>
-  <div class="sidecart" :class="{show:showCart,close:closeCart}">
+  <div class="sidecart" :class="{show:showCart}">
     <loading loader="dots" :active.sync="isLoading"></loading>
     <div class="cart_header df jc-sb">
       <h3>Cart<span>({{cartLength}}items)</span></h3>
       <button type="button" class="closebtn"
-        @click="closeCart=true">&times;</button>
+        @click="showCart=false,mobileClose()">&times;</button>
     </div>
     <div class="cart_body">
       <div class="items" v-for="item in carts" :key="item.id">
@@ -57,7 +57,6 @@ export default {
     return {
       isLoading: false,
       showCart: false,
-      closeCart: false,
       cartLength: 0,
       carts: [],
       subtotal: 0,
@@ -109,6 +108,9 @@ export default {
         this.err_data = err.response.data.message; this.$bus.$emit('error', this.err_data);
         this.isLoading = false;
       });
+    },
+    mobileClose() {
+      this.$bus.$emit('mobileclose');
     },
   },
   created() {

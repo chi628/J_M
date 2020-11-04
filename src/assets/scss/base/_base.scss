@@ -22,6 +22,11 @@ a {
     color: $main-color;
 }
 
+h1 {
+    font-size: $logo-fz;
+    font-family: $logo-font;
+}
+
 h2 {
     font-size: 28px;
     line-height: 2;
