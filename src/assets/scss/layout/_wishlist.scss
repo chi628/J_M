@@ -1,0 +1,23 @@
+.wishTitle {
+    @include padding(left, 35px);
+}
+
+.wishlist {
+    @include pad-width {
+        justify-content: flex-start;
+    }
+
+    @include phone-width {
+        justify-content: space-between;
+    }
+
+    .item {
+        @include pad-width {
+            width: 200px;
+        }
+
+        @include phone-width {
+            width: 150px;
+        }
+    }
+}
