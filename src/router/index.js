@@ -45,6 +45,11 @@ const routes = [
         name: 'Wishlist',
         component: () => import('@/views/fronted/layout/Wishlist.vue'),
       },
+      {
+        path: 'orderhistory',
+        name: 'OrderHistory',
+        component: () => import('@/views/fronted/layout/Orderhistory.vue'),
+      },
     ],
   },
   {

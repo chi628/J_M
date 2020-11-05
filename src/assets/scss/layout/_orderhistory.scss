@@ -1,0 +1,35 @@
+.history {
+    width: 800px;
+    margin: 0 auto;
+    border: 2px solid $main-color;
+    border-radius: 5px;
+
+    @include pad-width {
+        max-width: 95vw;
+    }
+
+    @include phone-width {
+        max-width: 95vw;
+    }
+
+    .orders {
+        padding: 10px;
+
+        @include phone-width {
+            padding: 5px;
+        }
+    }
+
+    .single-history {
+        border-bottom: 1px solid $merino;
+        padding: 5px 10px;
+
+        @include phone-width {
+            padding: 2px;
+        }
+
+        a {
+            display: block;
+        }
+    }
+}
