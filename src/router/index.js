@@ -50,6 +50,11 @@ const routes = [
         name: 'OrderHistory',
         component: () => import('@/views/fronted/layout/Orderhistory.vue'),
       },
+      {
+        path: 'coupons',
+        name: 'Coupons',
+        component: () => import('@/views/fronted/layout/Coupons.vue'),
+      },
     ],
   },
   {
