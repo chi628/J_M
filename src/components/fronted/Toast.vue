@@ -16,6 +16,9 @@ export default {
   created() {
     this.$bus.$on('error', (err) => {
       this.show = true;
+      setTimeout(() => {
+        this.show = false;
+      }, 1500);
       this.close = false;
       this.err = err;
     });

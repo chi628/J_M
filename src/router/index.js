@@ -35,6 +35,16 @@ const routes = [
         name: 'Reserve',
         component: () => import('@/views/fronted/page/Reserve.vue'),
       },
+      {
+        path: 'account',
+        name: 'Account',
+        component: () => import('@/views/fronted/page/Account.vue'),
+      },
+      {
+        path: 'wishlist',
+        name: 'Wishlist',
+        component: () => import('@/views/fronted/layout/Wishlist.vue'),
+      },
     ],
   },
   {
@@ -44,6 +54,10 @@ const routes = [
 ];
 
 const router = new VueRouter({
+  linkExactActiveClass: 'active',
+  scrollBehavior() {
+    return { x: 0, y: 0 };
+  },
   routes,
 });
 

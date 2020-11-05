@@ -82,15 +82,55 @@ export default {
         this.isLoading = false;
       });
     },
+    addToCart(id, quantity = 1) {
+      this.isLoading = true;
+      const url = `${process.env.VUE_APP_ApiPath}/api/${process.env.VUE_APP_UUID}/ec/shopping`;
+      const isInCart = this.carts.some((item) => {
+        if (item.product.id === id) {
+          this.updateCart(id, item.quantity + 1);
+          return true;
+        }
+        return false;
+      });
+      if (!isInCart) {
+        const cart = {
+          product: id,
+          quantity,
+        };
+        this.axios
+          .post(url, cart)
+          .then(() => {
+            this.isLoading = false;
+            this.getCart();
+            this.showCart = true;
+            this.$bus.$emit('showcart');
+            setTimeout(() => {
+              this.showCart = false;
+              this.$bus.$emit('closecart');
+            }, 1500);
+          })
+          .catch((err) => {
+            this.err_data = err.response.data.message;
+            this.$bus.$emit('error', this.err_data);
+            this.isLoading = false;
+          });
+      }
+    },
     updateCart(id, num) {
       this.isLoading = true;
-      const url = `${process.env.VUE_APP_ApiPath}/api/${process.env.VUE_APP_UUID11}/ec/shopping`;
+      const url = `${process.env.VUE_APP_ApiPath}/api/${process.env.VUE_APP_UUID}/ec/shopping`;
       const data = {
         product: id,
         quantity: num,
       };
       this.axios.patch(url, data).then(() => {
         this.getCart();
+        this.showCart = true;
+        this.$bus.$emit('showcart');
+        setTimeout(() => {
+          this.showCart = false;
+          this.$bus.$emit('closecart');
+        }, 1500);
         this.isLoading = false;
       }).catch((err) => {
         this.err_data = err.response.data.message;
@@ -120,6 +160,9 @@ export default {
     });
     this.$bus.$on('closecart', () => {
       this.showCart = false;
+    });
+    this.$bus.$on('addtocart', (id, quantity) => {
+      this.addToCart(id, quantity);
     });
   },
   beforeDestroy() {

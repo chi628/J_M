@@ -1,10 +1,12 @@
 <template>
-  <div>
+  <div class="home">
     <Navbar/>
     <Sidecart/>
     <Toast/>
         <router-view ></router-view>
-    <Footer class="footer"/>
+    <div class="home_footer">
+      <Footer/>
+    </div>
   </div>
 </template>
 <script>
@@ -23,9 +25,17 @@ export default {
 };
 </script>
 <style lang="scss">
-  // .footer{
-  //   position: sticky;
+  .home {
+    // position: relative;
+  }
+  // .home_footer{
+  //   position: absolute;
   //   bottom: 0;
-  //   width: 100vw;
+  //   footer{
+  //     position: absolute;
+  //     top: 0;
+  //     // bottom: 0;
+  //     width: 100vw;
+  //   }
   // }
 </style>

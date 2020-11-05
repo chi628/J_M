@@ -10,7 +10,7 @@
         <router-link to="/">J&amp;M</router-link>
       </h1>
     </div>
-    <nav class="nav df jc-sb ai-fs">
+    <nav class="nav df jc-fe ai-fs">
       <ul class="mobile-icons df jc-sa">
         <li>
           <button>
@@ -194,10 +194,18 @@ export default {
     this.$bus.$on('mobileclose', () => {
       this.showcart = false;
     });
+    this.$bus.$on('showcart', () => {
+      this.showcart = true;
+    });
+    this.$bus.$on('closecart', () => {
+      this.showcart = false;
+    });
   },
   beforeDestroy() {
     this.$bus.$off('cartlength');
     this.$bus.$off('mobileclose');
+    this.$bus.$off('showcart');
+    this.$bus.$off('closecart');
   },
 };
 </script>
