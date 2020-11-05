@@ -1,5 +1,6 @@
 .sidecart {
     max-width: 400px;
+    width: 100vw;
     height: 100vh;
     position: fixed;
     top: 0;
@@ -15,6 +16,12 @@
     &.show {
         right: 0;
     }
+}
+
+.noproudcts {
+    @include margin(top, 20px);
+    font-size: 18px;
+    font-weight: 500;
 }
 
 .cart_header {
@@ -186,6 +193,10 @@
             font-size: 16px;
             background-color: $main-color;
             color: #fff;
+
+            &:disabled {
+                opacity: 0.8;
+            }
         }
     }
 

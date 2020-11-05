@@ -1,0 +1,16 @@
+.account {
+    width: 1000px;
+    margin: 0 auto;
+    box-shadow: 1px 1px 1px $box-shadow;
+}
+
+.register,
+.login {
+    padding: 10px;
+    margin: 10px;
+    width: 50%;
+    border: 1px solid $main-color;
+    border-radius: 5px;
+}
+
+.form-group {}

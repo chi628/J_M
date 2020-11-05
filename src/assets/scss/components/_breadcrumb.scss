@@ -1,0 +1,32 @@
+.breadcrumbs {
+    text-transform: uppercase;
+    @include margin(left, 50px);
+
+    li {
+        font-size: 18px;
+        font-weight: 500;
+    }
+
+    .nowPos {
+        font-size: 16px;
+        font-weight: 400;
+
+        &::before {
+            content: '>';
+            margin: 0 10px;
+        }
+    }
+
+
+    @include phone-width {
+        @include margin(left, 15px);
+
+        li {
+            font-size: 14px;
+        }
+
+        .nowPos {
+            font-size: 14px;
+        }
+    }
+}

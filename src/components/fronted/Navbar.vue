@@ -13,29 +13,29 @@
     <nav class="nav df jc-fe ai-fs">
       <ul class="mobile-icons df jc-sa">
         <li>
-          <button>
-            <router-link to="">
+          <button type="button">
+            <router-link to="/account">
               <i class="far fa-user"></i>
             </router-link>
           </button>
         </li>
         <li>
-          <button>
-            <router-link to="">
+          <button type="button">
+            <router-link to="/wishlist">
               <i class="far fa-heart"></i>
             </router-link>
           </button>
         </li>
         <li>
-          <button>
-            <router-link to="">
+          <button type="button">
+            <router-link to="/orderhistory">
               <i class="fas fa-clipboard-list"></i>
             </router-link>
           </button>
         </li>
         <li>
-          <button>
-            <router-link to="">
+          <button type="button">
+            <router-link to="/coupons">
               <i class="fas fa-tags"></i>
             </router-link>
           </button>
@@ -54,7 +54,7 @@
             <span>品牌故事</span>
           </router-link>
         </li>
-        <li @click="ham=false">
+        <li @click="getProducts(),ham=false">
           <router-link to="/products/all">
             <span>All Items</span>
             <span>全部商品</span>
@@ -66,25 +66,25 @@
             <span>分類商品</span>
           </router-link>
           <ul>
-            <li @click="ham=false">
+            <li @click="getProducts(),ham=false">
               <router-link to="/products/candle">
                 <span>Scented candle</span>
                 <span>香氛蠟燭</span>
               </router-link>
             </li>
-            <li @click="ham=false">
+            <li @click="getProducts(),ham=false">
               <router-link to="/products/jar">
                 <span>Fragrance cream</span>
                 <span>居家香氛膏</span>
               </router-link>
             </li>
-            <li @click="ham=false">
+            <li @click="getProducts(),ham=false">
               <router-link to="/products/sprayer">
                 <span>Aroma spray</span>
                 <span>芳香噴霧</span>
               </router-link>
             </li>
-            <li @click="ham=false">
+            <li @click="getProducts(),ham=false">
               <router-link to="/products/oil">
                 <span>Essential oil</span>
                 <span>天然精油</span>
@@ -106,7 +106,7 @@
             <i class="fa fa-search"></i>
           </button></li>
         <li>
-          <button>
+          <button type="button">
             <router-link to="/account">
               <i class="far fa-user"></i>
             </router-link>
@@ -173,6 +173,9 @@ export default {
       } else if (scrollTop < 10) {
         this.scroll = false;
       }
+    },
+    getProducts() {
+      this.$bus.$emit('getproducts');
     },
     showCart() {
       this.showcart = true;

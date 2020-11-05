@@ -6,6 +6,9 @@
       <button type="button" class="closebtn"
         @click="showCart=false,mobileClose()">&times;</button>
     </div>
+    <div class="noproudcts ta-c">
+      <p>購物車還沒有商品唷！</p>
+    </div>
     <div class="cart_body">
       <div class="items" v-for="item in carts" :key="item.id">
         <div class="content df jc-sb">
@@ -45,7 +48,7 @@
       </div>
       <div class="checkout df jc-c">
         <router-link to='/'>
-          <button type="button">Secure Checkout</button>
+          <button type="button" :disabled="cartLength===0">Secure Checkout</button>
         </router-link>
       </div>
     </div>
