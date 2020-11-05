@@ -1,7 +1,7 @@
 <template>
     <div>
         <ul class="breadcrumbs df ai-c">
-            <li>
+            <li @click="getProducts()">
                 <router-link to="/products/all">All Products</router-link>
             </li>
             <li class="nowPos">{{catergroy}}</li>
@@ -17,9 +17,9 @@ export default {
     };
   },
   methods: {
-    // getProducts() {
-    //   this.$emit('getproducts');
-    // },
+    getProducts() {
+      this.$emit('getproducts');
+    },
   },
 };
 </script>

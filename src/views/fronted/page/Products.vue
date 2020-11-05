@@ -1,6 +1,6 @@
 <template>
   <div class="container df fxd-c">
-    <Breadcrumb :catergroy="category"/>
+    <Breadcrumb :catergroy="category" @getproducts="getProducts"/>
     <loading loader="dots" :active.sync="isLoading"></loading>
    <div class=" products df fxw-w">
       <div v-for="item in showProducts" :key="item.id" class="item">
