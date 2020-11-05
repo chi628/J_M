@@ -21,14 +21,17 @@
       </div>
     </div>
    </div>
+   <Pagination :page="pagination"/>
   </div>
 </template>
 <script>
 import Breadcrumb from '@/components/fronted/Breadcrumb.vue';
+import Pagination from '@/components/fronted/Pagination.vue';
 
 export default {
   components: {
     Breadcrumb,
+    Pagination,
   },
   data() {
     return {
@@ -37,6 +40,7 @@ export default {
       products: [],
       err_data: '',
       category: '',
+      pagination: {},
     };
   },
   methods: {
@@ -48,6 +52,7 @@ export default {
       console.log(this.category);
       this.axios.get(url)
         .then((res) => {
+          this.pagination = res.data.meta.pagination;
           this.products = res.data.data;
           this.products.forEach((item) => {
             if (this.category === item.category) {
