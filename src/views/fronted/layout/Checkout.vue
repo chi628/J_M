@@ -24,7 +24,7 @@
                 <router-link to="/">{{item.product.title}}</router-link>
               </p>
             </td>
-            <td>
+            <td class="df jc-fe ai-c">
               <span>數量</span>
               <div>
                 <select v-model="item.quantity" @change="updateCart(item.product.id,item.quantity)">
@@ -69,20 +69,20 @@
         <ul>
           <li>
             <span>Subtotal</span>
-            <span>NT.{{subtotal | money}}</span>
+            <span>{{subtotal | money}}</span>
           </li>
           <li>
             <span>Shipping</span>
-            <span>NT.{{shipping | money}}</span>
+            <span>{{shipping | money}}</span>
           </li>
           <li>
             <span>Discount</span>
-            <span v-if="discount>0">-NT.{{discount | money}}</span>
-            <span v-else>NT.{{discount | money}}</span>
+            <span v-if="discount>0">-{{discount | money}}</span>
+            <span v-else>{{discount | money}}</span>
           </li>
           <li>
             <span>Total</span>
-            <span>NT.{{subtotal+shipping-discount | money}}</span>
+            <span>{{subtotal+shipping-discount | money}}</span>
           </li>
         </ul>
       </div>

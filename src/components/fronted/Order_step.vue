@@ -46,11 +46,11 @@ export default {
       this.one = true;
       this.two = false;
       this.three = false;
-    } else if (this.tag === 'two') {
+    } else if (this.step === 'two') {
       this.one = false;
       this.two = true;
       this.three = false;
-    } else if (this.tag === 'three') {
+    } else if (this.step === 'three') {
       this.one = false;
       this.two = false;
       this.three = true;
