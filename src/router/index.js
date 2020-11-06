@@ -65,6 +65,11 @@ const routes = [
         name: 'OrderInfo',
         component: () => import('@/views/fronted/layout/OrderInfo.vue'),
       },
+      {
+        path: 'orderfound/:orderId',
+        name: 'OrderFound',
+        component: () => import('@/views/fronted/layout/OrderFound.vue'),
+      },
     ],
   },
   {

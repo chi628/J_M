@@ -1,0 +1,162 @@
+.ordersuccess {
+    width: 600px;
+    margin: 20px auto;
+
+    @include phone-width {
+        max-width: 95vw;
+    }
+
+}
+
+.success-icon {
+    @include margin(right, 15px);
+    position: relative;
+    width: 36px;
+    height: 36px;
+    background: $second-color;
+    border-radius: 50%;
+
+    svg {
+        position: absolute;
+        top: 0;
+        stroke: $main-color;
+        stroke-width: 2px;
+        fill: none;
+    }
+
+    span {
+        position: absolute;
+        display: block;
+        // margin: 5px 0;
+        background: white;
+
+        &:nth-child(1) {
+            top: 20px;
+            left: 8px;
+            width: 10px;
+            height: 3px;
+            transform: rotate(45deg);
+        }
+
+        &:nth-child(2) {
+            top: 17px;
+            left: 12px;
+            width: 20px;
+            height: 3px;
+            transform: rotate(135deg);
+        }
+    }
+}
+
+.found-content {
+    @include margin(top, 20px);
+    border: 2px solid $main-color;
+    border-radius: 5px;
+    padding: 0 20px;
+
+    @include phone-width {
+        padding: 0 10px;
+    }
+}
+
+.found_table {
+    @include margin(top, 10px);
+    width: 100%;
+    border-collapse: collapse;
+
+    th {
+        @include padding(bottom, 10px);
+        font-weight: 500;
+        border-bottom: 1px solid $merino;
+    }
+
+    tbody {
+        width: 100%;
+
+        tr {
+            border-bottom: 1px solid $merino;
+        }
+
+        td {
+            padding: 10px 0;
+            vertical-align: middle;
+        }
+
+        h4 {
+            font-size: 18px;
+            font-weight: 500;
+        }
+    }
+}
+
+.found-group {
+    @include margin(top, 20px);
+
+    h3 {
+        border-bottom: 1px solid $brown;
+
+    }
+}
+
+.found-total {
+
+    li {
+        @include margin(top, 5px);
+
+        span {
+            display: inline-block;
+            width: 80px;
+
+            &:nth-child(1) {
+                font-weight: 500;
+            }
+
+            &:nth-child(2)::before {
+                content: 'NT.';
+            }
+        }
+    }
+}
+
+.found-detail {
+    @include margin(top, 10px);
+
+    li {
+        @include margin(top, 5px);
+
+        span {
+            display: inline-block;
+
+            &:nth-child(1) {
+                font-weight: 500;
+                width: 130px;
+            }
+
+            &:nth-child(2) {
+                width: 200px;
+            }
+        }
+    }
+
+}
+
+.found-btns {
+    @include margin(top, 30px);
+    @include margin(bottom, 30px);
+
+    button {
+        @include margin(right, 20px);
+        border: 2px solid $main-color;
+        border-radius: 5px;
+        width: 120px;
+        height: 40px;
+    }
+
+    .to-home {
+        background-color: $main-color;
+
+        a {
+            color: white;
+        }
+    }
+}

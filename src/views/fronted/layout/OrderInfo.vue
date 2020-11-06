@@ -57,7 +57,7 @@
       </div>
       <div class="info_form df jc-c">
         <validation-observer v-slot="{ invalid }">
-          <form @submit.prevent="">
+          <form @submit.prevent="createOrder">
             <div class="form-group">
               <ValidationProvider rules="required" v-slot="{ errors }">
                 <label for="name" class="checkinfo_form_title">姓名</label>
@@ -126,7 +126,6 @@
                 <span class="errormsg">{{errors[0]}}</span>
               </ValidationProvider>
             </div>
-          </form>
           <div class="info_btns df jc-sb">
             <button type="button" class="infoback_btn">
               <router-link to="/checkout">
@@ -135,6 +134,7 @@
             </button>
             <button type="submit" class="found_btn" :disabled="invalid">Order &raquo;</button>
           </div>
+          </form>
         </validation-observer>
       </div>
     </div>
@@ -163,6 +163,7 @@ export default {
       cart: [],
       subtotal: 0,
       discount: 0,
+      err_data: '',
     };
   },
   methods: {
@@ -180,7 +181,30 @@ export default {
             this.subtotal += item.product.price * item.quantity;
           });
         })
-        .catch(() => {
+        .catch((err) => {
+          this.err_data = err.response.data.message;
+          this.$bus.$emit('error', this.err_data);
+          this.isLoading = false;
+        });
+    },
+    createOrder() {
+      this.isLoading = true;
+      const url = `${process.env.VUE_APP_ApiPath}/api/${process.env.VUE_APP_UUID}/ec/orders`;
+      const order = { ...this.form };
+      this.$bus.$on('checkcoupon', () => {
+        if (this.coupon.enabled) {
+          order.coupon = this.coupon.code;
+        }
+      });
+      this.axios.post(url, order)
+        .then((res) => {
+          if (res.data.data.id) {
+            this.$router.push(`/orderfound/${res.data.data.id}`);
+          }
+          this.isLoading = false;
+        }).catch((err) => {
+          this.err_data = err.response.data.message;
+          this.$bus.$emit('error', this.err_data);
           this.isLoading = false;
         });
     },

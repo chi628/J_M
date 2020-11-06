@@ -4,7 +4,7 @@
     <!-- <h4>Shopping Cart</h4> -->
     <loading loader="dots" :active.sync="isLoading"></loading>
     <div class="orders">
-      <table class="table">
+      <table>
         <thead>
           <tr>
             <th>商品資訊</th>
@@ -24,7 +24,7 @@
                 <router-link to="/">{{item.product.title}}</router-link>
               </p>
             </td>
-            <td class="df jc-fe ai-c">
+            <td>
               <span>數量</span>
               <div>
                 <select v-model="item.quantity" @change="updateCart(item.product.id,item.quantity)">
