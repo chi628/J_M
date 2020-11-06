@@ -1,5 +1,6 @@
 <template>
   <div class="history">
+    <AccountBread :tag="tag" />
     <loading loader="dots" :active.sync="isLoading"></loading>
     <div class="orders">
       <div v-for="order in orderlist" :key="order.id" class="single-history">
@@ -14,12 +15,18 @@
   </div>
 </template>
 <script>
+import AccountBread from '@/components/fronted/Account_tag.vue';
+
 export default {
+  components: {
+    AccountBread,
+  },
   data() {
     return {
       isLoading: false,
       orderlist: [],
       err_data: '',
+      tag: 'orderhistory',
     };
   },
   methods: {

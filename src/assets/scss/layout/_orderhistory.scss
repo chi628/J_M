@@ -1,8 +1,6 @@
 .history {
     width: 800px;
     margin: 0 auto;
-    border: 2px solid $main-color;
-    border-radius: 5px;
 
     @include pad-width {
         max-width: 95vw;
@@ -13,9 +11,12 @@
     }
 
     .orders {
+        border: 2px solid $main-color;
+        border-radius: 5px;
         padding: 10px;
 
         @include phone-width {
+            margin: 15px auto;
             padding: 5px;
         }
     }

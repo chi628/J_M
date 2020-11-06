@@ -1,0 +1,45 @@
+.account_bread {
+    width: 800px;
+    margin: 20px auto;
+
+    @include pad-width {
+        max-width: 95vw;
+        margin: 15px auto;
+    }
+
+    @include phone-width {
+        max-width: 95vw;
+        margin: 5px auto 15px;
+    }
+
+    ul {
+        li {
+
+            a {
+                color: $lighter-brown;
+                text-align: center;
+
+                &:hover {
+                    color: $main-color;
+                }
+
+                &.tag {
+                    color: $main-color;
+                }
+            }
+
+            i {
+                font-size: 22px;
+                line-height: 2;
+
+
+            }
+
+            span {
+                @include phone-width {
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+}

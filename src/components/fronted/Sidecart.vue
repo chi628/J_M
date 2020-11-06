@@ -6,7 +6,7 @@
       <button type="button" class="closebtn"
         @click="showCart=false,mobileClose()">&times;</button>
     </div>
-    <div class="noproudcts ta-c">
+    <div class="noproudcts ta-c" v-if="cartLength===0">
       <p>購物車還沒有商品唷！</p>
     </div>
     <div class="cart_body">
@@ -44,11 +44,12 @@
     <div class="cart_footer">
       <div class="total df jc-sb">
         <label>SUBTOTAL</label>
-        <span>{{subtotal | money}}</span>
+        <span>NT. {{subtotal | money}}</span>
       </div>
       <div class="checkout df jc-c">
-        <router-link to='/'>
-          <button type="button" :disabled="cartLength===0">Secure Checkout</button>
+        <router-link to='/checkout'>
+          <button type="button" :disabled="cartLength===0"
+           @click="showCart=false,mobileClose()">Secure Checkout</button>
         </router-link>
       </div>
     </div>

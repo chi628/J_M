@@ -14,3 +14,17 @@
     </div>
   </div>
 </template>
+<script>
+import AccountBread from '@/components/fronted/Account_tag.vue';
+
+export default {
+  components: {
+    AccountBread,
+  },
+  data() {
+    return {
+      tag: 'coupons',
+    };
+  },
+};
+</script>

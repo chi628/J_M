@@ -1,0 +1,67 @@
+.steps {
+
+    p,
+    span {
+        color: $lighter-brown;
+    }
+
+    .step {
+        @include margin(bottom, 5px);
+        position: relative;
+        width: 42px;
+        height: 42px;
+        border: 1px solid $lighter-brown;
+        border-radius: 50%;
+
+        svg {
+            position: absolute;
+            stroke: $lighter-brown;
+            fill: none;
+
+
+        }
+
+
+    }
+
+    &.tag {
+
+        p,
+        span {
+            color: $main-color;
+            font-weight: 500;
+        }
+
+        .step {
+            border: 2px solid $main-color;
+        }
+
+        svg {
+            stroke: $main-color;
+        }
+    }
+
+    @include phone-width {
+
+        p,
+        span {
+            font-size: 14px;
+        }
+
+        .step {
+            height: 38px;
+            width: 38px;
+
+            svg {
+                height: 38px;
+                width: 38px;
+
+                circle {
+                    cx: 19;
+                    cy: 19;
+                    r: 18;
+                }
+            }
+        }
+    }
+}

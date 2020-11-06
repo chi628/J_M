@@ -55,6 +55,11 @@ const routes = [
         name: 'Coupons',
         component: () => import('@/views/fronted/layout/Coupons.vue'),
       },
+      {
+        path: 'checkout',
+        name: 'Checkout',
+        component: () => import('@/views/fronted/layout/Checkout.vue'),
+      },
     ],
   },
   {
