@@ -1,5 +1,6 @@
 <template>
   <div class="single df fxd-c">
+    <loading loader="dots" :active.sync="isLoading"></loading>
     <div class="product df jc-sb">
       <div class="product_img df jc-c ai-c">
         <img :src="`${product.imageUrl[0]}`" alt="">
@@ -53,9 +54,9 @@
         </div>
       </div>
     </div>
-    <div class="related container df fxd-c">
+    <div class="related container df fxd-c ai-fs">
       <h3 class="ta-c">More Look</h3>
-      <div class="related_items df jc-c ai-c fxw-w">
+      <div class="related_items df jc-sb ai-c fxw-w">
         <div v-for="item in relatedProducts" :key="item.id"
           class="related_item"
           @click="getSingleProduct(),getProducts()">

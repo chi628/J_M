@@ -17,7 +17,7 @@
         <p>NT.{{item.price}}</p>
       </div>
       <div class="item-footer df jc-c">
-        <button type="button">Add to Cart</button>
+        <button type="button" @click="addtocart(item.id,1)">Add to Cart</button>
       </div>
     </div>
    </div>
@@ -68,6 +68,9 @@ export default {
           this.$bus.$emit('error', this.err_data);
           this.isLoading = false;
         });
+    },
+    addtocart(id, quantity = 1) {
+      this.$bus.$emit('addtocart', id, quantity);
     },
   },
   created() {

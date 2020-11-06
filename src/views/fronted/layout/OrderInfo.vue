@@ -20,7 +20,7 @@
                   <img :src="item.product.imageUrl[0]" alt />
                 </div>
                 <p class="itemtitle">
-                  <router-link to="/">{{item.product.title}}</router-link>
+                  {{item.product.title}}
                 </p>
               </td>
               <td>

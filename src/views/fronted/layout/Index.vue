@@ -16,7 +16,7 @@
             創造屬於你自己的回憶。</p>
         </div>
         <div class="btn">
-          <router-link to="">
+          <router-link to="/reserve">
             <button>立即預約</button></router-link>
         </div>
       </div>
@@ -33,7 +33,7 @@
             88 折。</p>
         </div>
         <div class="btn">
-          <router-link to="">
+          <router-link to="/products/all">
             <button>View More</button></router-link>
         </div>
       </div>

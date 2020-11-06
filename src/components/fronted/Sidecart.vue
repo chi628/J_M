@@ -12,16 +12,17 @@
     <div class="cart_body">
       <div class="items" v-for="item in carts" :key="item.id">
         <div class="content df jc-sb">
-          <div class="img df jc-c ai-c">
-            <router-link to="/">
+          <div class="img df jc-c ai-c" @click="showCart=false,mobileClose()">
+            <router-link :to="`/product/${item.product.id}`">
               <img :src="`${item.product.imageUrl[0]}`" alt="">
             </router-link>
           </div>
-          <div class="detail df fxd-c ai-c">
-            <router-link to="/">
-            <h4>{{item.product.title}}</h4></router-link>
+          <div class="detail df fxd-c ai-c" @click="showCart=false,mobileClose()">
+            <router-link :to="`/product/${item.product.id}`">
+            <h4>{{item.product.title}}</h4>
             <p>{{item.product.title}}</p>
             <p class="price">{{item.product.price}}</p>
+            </router-link>
           </div>
         </div>
         <div class="update df">

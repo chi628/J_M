@@ -198,14 +198,21 @@
 
     h3 {
         width: 150px;
-        margin: 0 auto;
         border-bottom: 3px solid $second-color;
     }
 
     .related_items {
         margin: 30px auto;
+        width: 800px;
+
+        @include pad-width {
+            width: 95vw;
+            // flex-direction: column;
+        }
 
         @include phone-width {
+            width: 95vw;
+
             .related_item {
                 width: 120px;
                 margin: 5px;

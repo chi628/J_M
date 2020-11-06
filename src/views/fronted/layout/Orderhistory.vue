@@ -7,7 +7,7 @@
         <p>訂單成立時間：{{ order.created.datetime }}</p>
         <p>訂單總金額: NT.{{ order.amount }}</p>
         <p>付款方式：{{ order.payment }}</p>
-        <router-link :to="`/ordersuccess/${order.id}`"
+        <router-link :to="`/orderfound/${order.id}`"
           class="ta-r">檢視訂單細節 &raquo;</router-link
         >
       </div>

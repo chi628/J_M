@@ -18,10 +18,14 @@
           <tr v-for="item in cart" :key="item.id">
             <td class="checkout_item df jc-c ai-c">
               <div class="itemimg">
+                <router-link :to="`/product/${item.product.id}`">
                 <img :src="item.product.imageUrl[0]" alt />
+                </router-link>
               </div>
               <p class="itemtitle">
-                <router-link to="/">{{item.product.title}}</router-link>
+                <router-link :to="`/product/${item.product.id}`">
+                  {{item.product.title}}
+                </router-link>
               </p>
             </td>
             <td>

@@ -132,7 +132,6 @@
             &::before {
                 content: '';
                 position: absolute;
-                // width: 30px;
                 height: 35px;
                 border: 1px solid $main-color;
                 top: -5px;
@@ -146,14 +145,18 @@
 
         .remove {
             button {
-                width: 120px;
+                width: 170px;
                 font-size: 14px;
                 text-decoration: underline;
+                text-align: center;
 
                 @include phone-width {
+                    // position: absolute;
                     position: relative;
                     width: 100px;
-                    right: -25px;
+                    left: 15px;
+                    // right: 5%;
+                    // left: 30%;
                 }
             }
         }
