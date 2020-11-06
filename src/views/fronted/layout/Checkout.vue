@@ -1,13 +1,13 @@
 <template>
-  <div class="container df fxd-c">
+  <div class="checkout container df fxd-c">
     <OrderStep :step="step"/>
+    <!-- <h4>Shopping Cart</h4> -->
     <loading loader="dots" :active.sync="isLoading"></loading>
-    <!-- <div class="orders">
-      <h3>Shopping Cart</h3>
+    <div class="orders">
       <table class="table">
         <thead>
           <tr>
-            <th width="50%">商品資訊</th>
+            <th>商品資訊</th>
             <th>數量</th>
             <th>單價</th>
             <th>小計</th>
@@ -16,17 +16,17 @@
         </thead>
         <tbody>
           <tr v-for="item in cart" :key="item.id">
-            <td class="">
-              <div class="item-img">
+            <td class="checkout_item df jc-c ai-c">
+              <div class="itemimg">
                 <img :src="item.product.imageUrl[0]" alt />
               </div>
-              <div class="item-title">
+              <p class="itemtitle">
                 <router-link to="/">{{item.product.title}}</router-link>
-              </div>
+              </p>
             </td>
             <td>
               <span>數量</span>
-              <div class="item-quantity">
+              <div>
                 <select v-model="item.quantity" @change="updateCart(item.product.id,item.quantity)">
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -44,15 +44,15 @@
             </td>
             <td>
               <span>單價</span>
-              {{item.product.price | money}}
+              <p>NT.{{item.product.price | money}}</p>
             </td>
             <td>
               <span>小計</span>
-              {{item.product.price * item.quantity | money}}
+              <p>NT.{{item.product.price * item.quantity | money}}</p>
             </td>
             <td>
               <span>刪除</span>
-              <button type="button" class="checkorder_table_remove"
+              <button type="button"
                 @click="removeCartItem(item.product.id)">
                 <i class="far fa-trash-alt"></i>
               </button>
@@ -60,41 +60,41 @@
           </tr>
         </tbody>
       </table>
-      <div class="discount">
+      <div class="discount df jc-fe ai-c">
         <input type="text" name="coupon" v-model="coupon_code" placeholder="Enter discount code" />
         <button type="submit" @click="addCoupon">Apply</button>
       </div>
 
-      <div class="order_total">
+      <div class="order_total df jc-fe ai-c">
         <ul>
           <li>
             <span>Subtotal</span>
-            <span>{{subtotal | money}}</span>
+            <span>NT.{{subtotal | money}}</span>
           </li>
           <li>
             <span>Shipping</span>
-            <span>{{shipping | money}}</span>
+            <span>NT.{{shipping | money}}</span>
           </li>
           <li>
             <span>Discount</span>
-            <span v-if="discount>0">-{{discount | money}}</span>
-            <span v-else>{{discount | money}}</span>
+            <span v-if="discount>0">-NT.{{discount | money}}</span>
+            <span v-else>NT.{{discount | money}}</span>
           </li>
           <li>
             <span>Total</span>
-            <span>{{subtotal+shipping-discount | money}}</span>
+            <span>NT.{{subtotal+shipping-discount | money}}</span>
           </li>
         </ul>
       </div>
-      <div class="">
-        <router-link to="/" class="back_btn">
-          <button type="button">&laquo; Back to Shopping</button>
-        </router-link>
-        <router-link to="/orderinfo" class="info_btn">
-          <button type="button">Order &raquo;</button>
-        </router-link>
+      <div class="checkout_btns df jc-sb ai-c">
+        <button type="button" class="back_btn">
+            <router-link to="/">&laquo; Back to Shopping</router-link>
+        </button>
+        <button type="button" class="info_btn">
+            <router-link to="/orderinfo">Order &raquo;</router-link>
+        </button>
       </div>
-    </div> -->
+    </div>
   </div>
 </template>
 <script>

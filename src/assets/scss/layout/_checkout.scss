@@ -1,3 +1,202 @@
+.checkout {
+    h4 {
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+    @include phone-width {
+        max-width: 100vw;
+    }
+}
+
 .orders {
-    border: 1px solid red;
+    @include margin(top, 15px);
+    padding: 5px 10px;
+
+
+
+    table {
+        @include margin(top, 15px);
+        width: 100%;
+        border-collapse: collapse;
+
+        tr {
+            border-bottom: 1px solid $merino;
+            text-align: center;
+        }
+
+        th {
+            padding: 10px 0;
+            vertical-align: middle;
+        }
+
+        td {
+            width: 350px;
+            padding: 10px 0;
+            vertical-align: middle;
+
+            span {
+                display: none;
+            }
+
+            .itemimg {
+                width: 50px;
+            }
+
+            .itemtitle {
+                font-weight: 500;
+            }
+        }
+
+        select {
+            width: 50px;
+            height: 30px;
+        }
+
+        button {
+            border: none;
+            font-size: 18px;
+        }
+
+        @include phone-width {
+            max-width: 100vw;
+
+            thead tr {
+                display: none;
+            }
+
+            tbody {
+                tr {
+                    display: flex;
+                    justify-content: space-between;
+                    // flex-direction: column;
+                }
+
+                td {
+                    width: 18%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+
+                    span {
+                        display: block;
+                        font-size: 14px;
+                    }
+
+                    p {
+                        font-size: 14px;
+                    }
+                }
+
+                .checkout_item {
+                    width: 22%;
+
+                    .itemimg {
+                        width: 30px;
+                    }
+
+                    .itemtitle {
+                        font-size: 14px;
+                        font-weight: 500;
+                    }
+                }
+
+                select {
+                    width: 40px;
+                    height: 25px;
+                }
+            }
+        }
+    }
+}
+
+.discount {
+    @include margin(top, 15px);
+    height: 40px;
+
+    input {
+        width: 200px;
+        height: 35px;
+        border: 1px solid $second-color;
+        border-radius: 3px;
+
+        &::placeholder {
+            @include padding(left, 5px);
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+    }
+
+    button {
+        height: 35px;
+        width: 70px;
+        border: 1px solid $main-color;
+        background-color: $main-color;
+        color: white;
+        border-radius: 3px;
+        font-size: 12px;
+        text-transform: uppercase;
+    }
+}
+
+.order_total {
+    @include margin(top, 15px);
+    border-top: 1px solid $merino;
+
+    li {
+        @include margin(top, 5px);
+        display: flex;
+    }
+
+    span {
+        &:nth-child(1) {
+            @include margin(right, 30px);
+            display: block;
+            width: 80px;
+            font-weight: 500;
+        }
+    }
+
+    @include phone-width {
+        span {
+            font-size: 14px;
+            font-weight: 500;
+        }
+    }
+}
+
+.checkout_btns {
+    @include margin(top, 15px);
+    @include padding(top, 15px);
+    border-top: 1px solid $merino;
+
+    .back_btn {
+        border: none;
+        height: 40px;
+
+        a {
+            font-size: 10px;
+            text-transform: uppercase;
+        }
+    }
+
+    .info_btn {
+        border: 1px solid $second-color;
+        background-color: $second-color;
+        border-radius: 3px;
+        width: 150px;
+        height: 40px;
+
+        a {
+            color: white;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        @include phone-width {
+            width: 120px;
+            height: 35px;
+        }
+    }
+
 }

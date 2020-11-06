@@ -60,6 +60,11 @@ const routes = [
         name: 'Checkout',
         component: () => import('@/views/fronted/layout/Checkout.vue'),
       },
+      {
+        path: 'orderinfo',
+        name: 'OrderInfo',
+        component: () => import('@/views/fronted/layout/OrderInfo.vue'),
+      },
     ],
   },
   {
