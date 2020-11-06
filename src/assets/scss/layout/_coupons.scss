@@ -1,138 +1,43 @@
-.coupons {
-    width: 1000px;
-    margin: 20px auto;
+.coupon {
+    width: 400px;
+    margin: 30px auto;
+    height: 150px;
 
-    @include phone-width {
-        width: 350px;
+
+    &-left {
+        width: 30%;
+        border-radius: 9px;
+        background-color: $main-color;
+        color: white;
+        font-size: 22px;
     }
 
-    &-coupon {
-        display: inline-block;
-        overflow: hidden;
+    &-right {
+        width: 70%;
         border: 1px solid $main-color;
-        border-radius: 10px;
-        width: 400px;
-        height: 150px;
-        display: flex;
-        flex-direction: row;
-        margin: 10px auto;
+        border-radius: 9px;
 
-        @include phone-width {
-            width: 350px;
+        span {
+            font-weight: 500;
+            color: $error-red;
         }
 
+        .date {
+            @include margin(top, 10px);
+            font-size: 14px;
+        }
+    }
+
+    @include phone-width {
+        max-width: 95vw;
+        height: 120px;
+
         &-left {
-            width: 150px;
-            height: 150px;
-            position: relative;
-
-
-            p {
-                width: 100px;
-                position: absolute;
-                top: 50px;
-                left: 10px;
-                font-family: $font;
-                font-size: 26px;
-                line-height: 1.5;
-                font-weight: 500;
-                color: #fff;
-                z-index: 2;
-                text-align: center;
-
-                @include phone-width {
-                    left: 5px;
-                }
-            }
-
-            &::before {
-                content: '';
-                position: absolute;
-                top: -210px;
-                display: block;
-                right: -210px;
-                width: 20px;
-                height: 20px;
-                border-radius: 50%;
-                border: 200px solid $main-color;
-                clip: rect(auto, auto, 285px, auto);
-            }
-
-            &::after {
-                content: '';
-                position: absolute;
-                bottom: -210px;
-                display: block;
-                right: -210px;
-                width: 20px;
-                height: 20px;
-                border-radius: 50%;
-                border: 200px solid $main-color;
-                clip: rect(135px, auto, auto, auto);
-            }
+            width: 20%;
         }
 
         &-right {
-            width: 350px;
-            height: 150px;
-            position: relative;
-
-            p {
-                width: 250px;
-                position: absolute;
-                top: 25px;
-                left: 10px;
-                font-family: $font;
-                font-size: 14px;
-                line-height: 1.5;
-                font-weight: 500;
-                color: $main-color;
-                z-index: 2;
-                text-align: center;
-
-                @include phone-width {
-                    left: 0px;
-                }
-            }
-
-            .date {
-                z-index: 3;
-                top: 85px;
-                bottom: 0;
-                font-size: 12px;
-            }
-
-            span {
-                color: $error-red;
-            }
-
-            &::before {
-                content: '';
-                position: absolute;
-                top: -410px;
-                display: block;
-                left: -410px;
-                width: 20px;
-                height: 20px;
-                z-index: 1;
-                border-radius: 50%;
-                border: 400px solid #fff;
-                clip: rect(0, auto, 485px, 410px);
-            }
-
-            &::after {
-                content: '';
-                position: absolute;
-                bottom: -410px;
-                display: block;
-                left: -410px;
-                width: 20px;
-                height: 20px;
-                z-index: 1;
-                border-radius: 50%;
-                border: 400px solid #fff;
-                clip: rect(335px, auto, auto, 410px);
-            }
+            width: 80%;
         }
     }
 }

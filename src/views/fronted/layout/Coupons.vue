@@ -1,11 +1,11 @@
 <template>
-  <div class="coupons">
-    <AccountBread :tag="tag"/>
-    <div class="coupons-coupon">
-      <div class="coupons-coupon-left">
-          <p>12%</p>
+  <div class="container">
+    <AccountBread :tag="tag" />
+    <div class="coupon df">
+      <div class="coupon-left df jc-c ai-c">
+        <p>12%</p>
       </div>
-      <div class="coupons-coupon-right">
+      <div class="coupon-right ta-c df fxd-c jc-c ai-c">
         <p>
           歡慶情人節，結帳輸入折扣碼「<span>iloveu</span>」，不限金額立即 88 折。
         </p>
@@ -27,4 +27,5 @@ export default {
     };
   },
 };
+
 </script>
