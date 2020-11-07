@@ -1,19 +1,10 @@
 <template>
   <div class="backend">
     <loading loader="dots" :active.sync="isLoading"></loading>
-    <Modal
-      :isNew="isNew"
-      :openmodal="showModal"
-      :tempProduct="tempProduct"
-      @addproduct="addProduct"
-      @updateproduct="updateProduct"
-      @closemodal="closeModal"/>
-    <DelModal
-      :tempProduct="tempProduct"
-      :opendelmodal="showDelModal"
-      @deleteproduct="deleteProduct"
-      @closedelmodal="closeDelModal"
-    />
+    <Modal :isNew="isNew" :openmodal="showModal" :tempproduct="tempProduct"
+      @addproduct="addProduct" @updateproduct="updateProduct" @closemodal="closeModal" />
+    <DelModal :tempProduct="tempProduct" :opendelmodal="showDelModal"
+      @deleteproduct="deleteProduct" @closedelmodal="closeDelModal" />
     <div class="container">
       <h3>Products</h3>
       <button class="addbtn" type="button" @click="openModal('new')">新增產品</button>
@@ -23,7 +14,6 @@
             <th>Category</th>
             <th>Brand</th>
             <th>Image</th>
-            <th>Origin Price</th>
             <th>Price</th>
             <th>Enabled</th>
             <th>Edit / Delete</th>
@@ -36,29 +26,19 @@
             <td>
               <img :src="item.imageUrl[0]" alt />
             </td>
-            <td>{{ item.origin_price }}</td>
             <td>{{ item.price }}</td>
             <td>
-               <label class="container">
-                <input
-                 type="checkbox"
-                 v-model="item.enabled">
-                <!-- <span class="checkmark"></span> -->
+              <label class="container">
+                <input type="checkbox" v-model="item.enabled">
                 <p>上架</p>
               </label>
             </td>
             <td>
-              <button
-               type="button"
-               class="editbtn"
-               @click="openModal('edit', item)">
-               Edit
+              <button type="button" class="editbtn" @click="openModal('edit', item)">
+                Edit
               </button>
-              <button
-               type="button"
-               class="delbtn"
-               @click="openModal('delete', item)">
-               Delete
+              <button type="button" class="delbtn" @click="openModal('delete', item)">
+                Delete
               </button>
             </td>
           </tr>
@@ -104,7 +84,6 @@ export default {
           this.isLoading = false;
           this.products = res.data.data;
           this.pagination = res.data.meta.pagination;
-          console.log('admin/products', this.products);
         })
         .catch((err) => {
           this.isLoading = false;
@@ -195,12 +174,14 @@ export default {
           break;
         case 'edit':
           this.isNew = false;
-          this.tempProduct = JSON.parse(JSON.stringify(item));
+          this.tempProduct = JSON.parse(JSON.stringify(item)); // 深層複製物件
           this.getProduct(this.tempProduct.id);
           this.showModal = true;
           break;
         case 'delete':
-          this.tempProduct = { ...item };
+          this.tempProduct = {
+            ...item,
+          };
           this.showDelModal = true;
           break;
         default:
@@ -218,4 +199,5 @@ export default {
     this.getProducts();
   },
 };
+
 </script>

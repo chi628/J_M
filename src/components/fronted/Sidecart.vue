@@ -150,7 +150,8 @@ export default {
         this.getCart();
         this.isLoading = false;
       }).catch((err) => {
-        this.err_data = err.response.data.message; this.$bus.$emit('error', this.err_data);
+        this.err_data = err.response.data.message;
+        this.$bus.$emit('error', this.err_data);
         this.isLoading = false;
       });
     },

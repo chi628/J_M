@@ -1,23 +1,21 @@
 <template>
-  <div class="delete_modal"  :class="{'show':opendelmodal}">
-    <div class="delete_modal-header">
-      <h1>刪除產品</h1>
-      <button type="button" class="delete_modal-header-close" @click="closeDelModal">
+  <div class="modal del"  :class="{'show':opendelmodal}">
+    <div class="modal-header df jc-sb ai-c">
+      <h3>刪除產品</h3>
+      <button type="button" @click="closeDelModal">
         <span>&times;</span>
       </button>
     </div>
-    <div class="delete_modal-body">
+    <div class="modal-body df jc-c ai-c">
       <p> 是否刪除
-      <strong>{{ tempProduct.title }}</strong> (刪除後將無法恢復)。</p>
+      <span>{{ tempProduct.title }}</span> (刪除後將無法恢復)。</p>
     </div>
-    <div class="delete_modal-footer">
+    <div class="modal-footer df jc-fe">
       <button
        type="button"
-       class="delete_modal-footer-close"
        @click="closeDelModal">Close</button>
       <button
        type="button"
-       class="modal-footer-sure"
        @click="deleteProduct(tempProduct.id)">確認刪除</button>
     </div>
   </div>
