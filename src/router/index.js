@@ -41,6 +41,11 @@ const routes = [
         component: () => import('@/views/fronted/page/Account.vue'),
       },
       {
+        path: 'login',
+        name: 'Login',
+        component: () => import('@/views/fronted/page/Login.vue'),
+      },
+      {
         path: 'wishlist',
         name: 'Wishlist',
         component: () => import('@/views/fronted/layout/Wishlist.vue'),
@@ -69,6 +74,33 @@ const routes = [
         path: 'orderfound/:orderId',
         name: 'OrderFound',
         component: () => import('@/views/fronted/layout/OrderFound.vue'),
+      },
+    ],
+  },
+  {
+    path: '/admin',
+    name: 'Dashboard',
+    component: () => import('../views/backend/Dashboard.vue'),
+    children: [
+      {
+        path: 'products',
+        name: 'Products',
+        component: () => import('../views/backend/Products.vue'),
+      },
+      {
+        path: 'coupons',
+        name: 'Coupons',
+        component: () => import('../views/backend/Coupons.vue'),
+      },
+      {
+        path: 'orders',
+        name: 'Orders',
+        component: () => import('../views/backend/Orders.vue'),
+      },
+      {
+        path: 'storage',
+        name: 'Storage',
+        component: () => import('../views/backend/Storage.vue'),
       },
     ],
   },

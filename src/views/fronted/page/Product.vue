@@ -12,8 +12,10 @@
             <h4>NT.{{product.price}}</h4>
             <div class="size">
               <label for="">容量:</label>
-              <button type="button">30 ml</button>
-              <button type="button">50 ml</button>
+              <button type="button"
+               :class="{click:sm_size}" @click="sm_size=!sm_size,bg_size=false">30 ml</button>
+              <button type="button"
+               :class="{click:bg_size}" @click="bg_size=!bg_size,sm_size=false">50 ml</button>
             </div>
             <div class="quantity">
               <button type="button" :disabled="quantity===1" @click="quantity=quantity-1">-</button>
@@ -21,8 +23,12 @@
               <button type="button" @click="quantity = quantity + 1">+</button>
             </div>
             <div class="product_btns df fxd-c ta-c">
-              <button type="button" class="addcart" @click="addToCart(product.id,quantity)">Add To
-                Cart</button>
+              <span class="errormsg ta-l"
+               v-if="sm_size===false&&bg_size===false">您尚未勾選容量</span>
+              <button type="button" class="addcart"
+               :disabled="sm_size===false&&bg_size===false"
+               @click="addToCart(product.id,quantity)">
+               Add To Cart</button>
               <button type="button" @click="addToWish(product)">
                 <i class="far fa-heart"></i>
                 <span>Wish List</span></button>
@@ -85,6 +91,8 @@ export default {
       remove_wish: false,
       notice_box: false,
       decribe_box: true,
+      sm_size: true,
+      bg_size: false,
       quantity: 1,
       products: [],
       product: {
