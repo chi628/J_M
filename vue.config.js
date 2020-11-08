@@ -1,3 +1,3 @@
 module.exports = {
-  publicPath: '/.',
+  publicPath: '/J_M/dist',
 };
