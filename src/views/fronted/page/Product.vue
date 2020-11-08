@@ -160,7 +160,6 @@ export default {
       localStorage.setItem('wishList', JSON.stringify(this.wishlist));
     },
     clickLI(e) {
-      console.log(e.target);
       if (e.target.className === 'describe_tag') {
         this.decribe_box = true;
         this.notice_box = false;

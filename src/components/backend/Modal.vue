@@ -164,7 +164,6 @@ export default {
       this.$emit('closemodal');
     },
     uploadFile(index) {
-      console.dir(this.$refs);
       const uploadImg = this.$refs.file[index].files[0];
       const formData = new FormData();
       formData.append('file', uploadImg);

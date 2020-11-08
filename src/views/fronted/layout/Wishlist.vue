@@ -33,9 +33,6 @@ export default {
       wishlist: JSON.parse(localStorage.getItem('wishList')) || [],
     };
   },
-  created() {
-    console.log(this.wishlist);
-  },
 };
 
 </script>

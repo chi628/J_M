@@ -182,7 +182,6 @@ export default {
       this.$bus.$emit('showcart');
     },
     closeCart() {
-      console.log('click');
       this.showcart = false;
       this.$bus.$emit('closecart');
     },

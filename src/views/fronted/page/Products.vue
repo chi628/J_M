@@ -49,7 +49,6 @@ export default {
       const url = `${process.env.VUE_APP_ApiPath}/api/${process.env.VUE_APP_UUID}/ec/products`;
       this.showProducts = [];
       this.category = this.$route.params.category;
-      console.log(this.category);
       this.axios.get(url)
         .then((res) => {
           this.pagination = res.data.meta.pagination;
