@@ -1,19 +1,19 @@
 <template>
   <div class="modal" :class="{'show':openmodal}">
     <div class="modal-header df jc-sb ai-c">
-      <h3 v-if="isNew">新增產品</h3>
-      <h3 v-else>編輯產品</h3>
+      <h3 v-if="isNew">新增{{title}}</h3>
+      <h3 v-else>編輯{{title}}</h3>
       <button type="button" @click="closeModal">
         <span>&times;</span>
       </button>
     </div>
-    <div class="modal-body df">
+    <div class="modal-body df" v-if="title==='產品'">
       <div class="modalImg">
         <h4>上傳商品圖片</h4>
         <div v-for="i in 5" :key="i + 'img'" class="form-group df fxd-c">
           <div>
             <label :for="'img' + i">輸入圖片網址</label>
-            <input :id="'img' + i" v-model="tempProduct.imageUrl[i - 1]" type="text"
+            <input :id="'img' + i" v-model="tempItem.imageUrl[i - 1]" type="text"
               class="input-url" placeholder="請輸入圖片連結" />
           </div>
           <div>
@@ -22,7 +22,7 @@
             </label>
             <input id="uploadimg" ref="file" type="file" @change="uploadFile(i-1)" />
           </div>
-          <img class="showImg" :src="tempProduct.imageUrl[i - 1]" alt />
+          <img class="showImg" :src="tempItem.imageUrl[i - 1]" alt />
         </div>
       </div>
       <div class="modal-info">
@@ -32,7 +32,7 @@
             <input
              id="title"
              type="text"
-             v-model="tempProduct.title"
+             v-model="tempItem.title"
              placeholder="請輸入產品名稱" />
           </div>
           <div class="form-group df fxd-c">
@@ -41,7 +41,7 @@
              id="category"
              type="text"
              list="items"
-             v-model="tempProduct.category"
+             v-model="tempItem.category"
              required />
             <datalist name="類別" id="items">
               <option value="candle">大豆蠟燭</option>
@@ -55,7 +55,7 @@
               <input
                id="origin"
                type="number"
-               v-model="tempProduct.origin_price"
+               v-model="tempItem.origin_price"
                placeholder="請輸入售價" />
             </div>
             <div class="form-group df fxd-c">
@@ -63,7 +63,7 @@
               <input
                id="price"
                type="number"
-               v-model="tempProduct.price"
+               v-model="tempItem.price"
                placeholder="請輸入售價" />
             </div>
              <div class="form-group df fxd-c">
@@ -71,7 +71,7 @@
             <textarea
              id="description"
              type="text"
-             v-model="tempProduct.description"
+             v-model="tempItem.description"
              placeholder="請輸入商品描述"></textarea>
           </div>
           <div class="form-group df fxd-c">
@@ -79,13 +79,13 @@
             <textarea
              id="content"
              type="text"
-             v-model="tempProduct.content"
+             v-model="tempItem.content"
              placeholder="請輸入注意事項"></textarea>
           </div>
           <div class="form-group df ai-c">
                 <input
                   id="is_enabled"
-                  v-model="tempProduct.enabled"
+                  v-model="tempItem.enabled"
                   type="checkbox"
                 >
                 <label
@@ -95,6 +95,32 @@
               </div>
       </div>
     </div>
+     <div class="modal-body" v-else-if="title==='優惠券'">
+        <div>
+          <label for="title">優惠券名稱</label>
+          <input id="title" v-model="tempItem.title" type="text" placeholder="請輸入優惠券名稱" />
+        </div>
+        <div>
+          <label for="coupon_code">優惠碼</label>
+          <input id="coupon_code" v-model="tempItem.code" type="text" placeholder="請輸入優惠碼" />
+        </div>
+        <div>
+          <label for="due_date">到期日</label>
+          <input id="due_date" v-model="tempItem.due_date" type="date" />
+        </div>
+        <div>
+          <label for="due_time">到期時間</label>
+          <input id="due_time" v-model="tempItem.due_time" type="time" step="1" />
+        </div>
+        <div>
+          <label for="price">折扣百分比</label>
+          <input id="price" v-model="tempItem.percent" type="number" placeholder="請輸入折扣數" />
+        </div>
+        <div class="checkbox">
+          <label for="enabled">是否啟用</label>
+          <input type="checkbox" id="enabled" v-model="tempItem.enabled">
+        </div>
+      </div>
     <div class="modal-footer df jc-fe">
       <button
        type="button"
@@ -103,13 +129,13 @@
       </button>
       <button
        type="button"
-       @click="addProduct"
+       @click="addItem"
        v-if="isNew">
        確認新增
       </button>
       <button
        type="button"
-       @click="updateProduct(tempProduct.id)"
+       @click="updateItem(tempItem.id)"
        v-else>
        確定更新
       </button>
@@ -118,12 +144,9 @@
 </template>
 <script>
 export default {
-  props: ['isNew', 'openmodal', 'tempproduct'],
+  props: ['title', 'isNew', 'openmodal', 'tempItem'],
   data() {
     return {
-      tempProduct: {
-        imageUrl: [],
-      },
       status: {
         fileUploading: false,
       },
@@ -131,11 +154,11 @@ export default {
     };
   },
   methods: {
-    addProduct() {
-      this.$emit('addproduct');
+    addItem() {
+      this.$emit('additem');
     },
-    updateProduct(id) {
-      this.$emit('updateproduct', id);
+    updateItem(id) {
+      this.$emit('updateitem', id);
     },
     closeModal() {
       this.$emit('closemodal');
@@ -162,6 +185,8 @@ export default {
         this.status.fileUploading = false;
       });
     },
+  },
+  created() {
   },
 };
 

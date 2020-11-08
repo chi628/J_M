@@ -1,4 +1,6 @@
 .backend {
+    @include margin(top, 15px);
+
     table {
         width: 100%;
         border-collapse: separate;
@@ -30,6 +32,13 @@
         .backend-item {
             position: relative;
         }
+    }
+
+    .addbtn {
+        border: 1px solid $main-color;
+        border-radius: 3px;
+        width: 100px;
+        height: 40px;
     }
 }
 

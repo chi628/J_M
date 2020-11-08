@@ -1,9 +1,15 @@
 <template>
   <div class="backend">
+    <Modal :title="title" :isNew="isNew" :tempItem="tempCoupon" :openmodal="showModal"
+      @additem="addCoupon" @updateitem="updateCoupon" @closemodal="closeModal"/>
+    <DelModal :title="title" :tempCoupon="tempCoupon" :opendelmodal="showDelModal"
+      @deleteitem="deleteCoupon" @closedelmodal="closeDelModal" />
     <loading loader="dots" :active.sync="isLoading"></loading>
     <div class="container">
-      <h3 class="ta-c">Coupons</h3>
+      <div class="df jc-sb ai-c">
+        <h3 class="ta-c">Coupons</h3>
       <button class="addbtn" type="button" @click="openModal('new')">新增優惠券</button>
+      </div>
       <table>
         <thead>
           <tr>
@@ -27,7 +33,6 @@
                type="checkbox"
                v-model="item.enabled"
                @click="openModal('enabled', item), updateCoupon()">
-              <span class="checkmark"></span>
               <p v-if="item.enabled">已開放</p>
               <p v-else>未開放</p>
             </label>
@@ -49,104 +54,21 @@
           </tr>
         </tbody>
       </table>
-      <Pagination
-      :page="pagination" @updatepage="getCoupons" />
+      <!-- <Pagination
+      :page="pagination" @updatepage="getCoupons" /> -->
     </div>
-    <!-- 新增/編輯 Modal -->
-    <div class="couponmodal" :class="{'show':showModal}">
-      <div class="couponmodal-header">
-        <h1>
-          <span v-if="isNew">新增優惠券</span>
-          <span v-else>編輯優惠券</span>
-        </h1>
-        <div class="couponmodal-header-close">
-          <button type="button" @click="showModal=false">
-            <span>&times;</span>
-           </button>
-        </div>
-      </div>
-      <div class="couponmodal-body">
-        <div>
-          <label for="title">優惠券名稱</label>
-          <input id="title" v-model="tempCoupon.title" type="text" placeholder="請輸入優惠券名稱" />
-        </div>
-        <div>
-          <label for="coupon_code">優惠碼</label>
-          <input id="coupon_code" v-model="tempCoupon.code" type="text" placeholder="請輸入優惠碼" />
-        </div>
-        <div>
-          <label for="due_date">到期日</label>
-          <input id="due_date" v-model="due_date" type="date" />
-        </div>
-        <div>
-          <label for="due_time">到期時間</label>
-          <input id="due_time" v-model="due_time" type="time" step="1" />
-        </div>
-        <div>
-          <label for="price">折扣百分比</label>
-          <input id="price" v-model="tempCoupon.percent" type="number" placeholder="請輸入折扣數" />
-        </div>
-        <div class="checkbox">
-          <label for="enabled">是否啟用</label>
-          <input type="checkbox" id="enabled" v-model="tempCoupon.enabled">
-        </div>
-      </div>
-      <div class="couponmodal-footer">
-        <button type="button" class="couponmodal-footer-close" @click="showModal=false">關閉</button>
-        <button
-         type="button"
-         class="couponmodal-footer-sure"
-         v-if="isNew"
-         @click="addCoupon">
-         確認新增
-        </button>
-        <button
-         type="button"
-         class="couponmodal-footer-sure"
-         v-else
-         @click="updateCoupon(tempCoupon.id)">
-         確認修改
-        </button>
-      </div>
-    </div>
-    <!-- Modal End -->
-
-    <!-- 刪除 Modal -->
-    <div class="delmodal" :class="{'show':showDelModal}">
-      <div class="delmodal-header">
-        <h1>刪除優惠券</h1>
-        <div  class="delmodal-header-close">
-          <button type="button" @click="showDelModal=false">
-          <span>&times;</span>
-        </button>
-        </div>
-      </div>
-      <div class="delmodal-body">
-        <p>
-          是否刪除
-          <strong>{{ tempCoupon.title }}</strong>優惠券(刪除後將無法恢復)。
-        </p>
-      </div>
-      <div class="delmodal-footer">
-        <button
-         type="button"
-         class="delmodal-footer-close"
-         @click="showDelModal=false">Close</button>
-        <button
-         type="button"
-         class="delmodal-footer-sure"
-         @click="deleteProduct(tempCoupon.id)">確認刪除</button>
-      </div>
-    </div>
-    <!-- Modal End -->
   </div>
 </template>
 <script>
 // import Pagination from '@/components/Pagination.vue';
+import Modal from '@/components/backend/Modal.vue';
+import DelModal from '@/components/backend/DelModal.vue';
 
 export default {
   components: {
     // Pagination,
+    Modal,
+    DelModal,
   },
   data() {
     return {
@@ -157,15 +79,16 @@ export default {
         percent: 100,
         enabled: false,
         deadline_at: '2020-12-31 23:59:59',
+        due_date: '',
+        due_time: '',
       },
-      due_date: '',
-      due_time: '',
       isNew: false,
       token: '',
       isLoading: false,
       pagination: {},
       showModal: false,
       showDelModal: false,
+      title: '優惠券',
     };
   },
   methods: {
@@ -203,7 +126,7 @@ export default {
     },
     addCoupon() {
       this.isLoading = true;
-      this.tempCoupon.deadline_at = `${this.due_date} ${this.due_time}`;
+      this.tempCoupon.deadline_at = `${this.tempCoupon.due_date} ${this.tempCoupon.due_time}`;
       this.axios
         .post(
           `${process.env.VUE_APP_ApiPath}/api/${process.env.VUE_APP_UUID}/admin/ec/coupon`,
@@ -229,7 +152,7 @@ export default {
     },
     updateCoupon(id) {
       this.isLoading = true;
-      this.tempCoupon.deadline_at = `${this.due_date} ${this.due_time}`;
+      this.tempCoupon.deadline_at = `${this.tempCoupon.due_date} ${this.tempCoupon.due_time}`;
       this.axios
         .patch(
           `${process.env.VUE_APP_ApiPath}/api/${process.env.VUE_APP_UUID}/admin/ec/coupon/${id}`,
@@ -245,11 +168,11 @@ export default {
           console.log(err.response.data.message);
         });
     },
-    deleteProduct(id) {
+    deleteCoupon() {
       this.isLoading = true;
       this.axios
         .delete(
-          `${process.env.VUE_APP_ApiPath}/api/${process.env.VUE_APP_UUID}/admin/ec/coupon/${id}`,
+          `${process.env.VUE_APP_ApiPath}/api/${process.env.VUE_APP_UUID}/admin/ec/coupon/${this.tempCoupon.id}`,
         )
         .then((res) => {
           console.log(res);
@@ -273,7 +196,7 @@ export default {
           this.isNew = false;
           this.tempCoupon = { ...item };
           const dedlineAt = this.tempCoupon.deadline.datetime.split(' ');
-          [this.due_date, this.due_time] = dedlineAt; // 日期
+          [this.tempCoupon.due_date, this.tempCoupon.due_time] = dedlineAt; // 日期
 
           this.showModal = true;
           break;
@@ -290,6 +213,12 @@ export default {
         default:
           break;
       }
+    },
+    closeModal() {
+      this.showModal = false;
+    },
+    closeDelModal() {
+      this.showDelModal = false;
     },
   },
   created() {

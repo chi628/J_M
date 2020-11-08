@@ -1,13 +1,15 @@
 <template>
   <div class="backend">
     <loading loader="dots" :active.sync="isLoading"></loading>
-    <Modal :isNew="isNew" :openmodal="showModal" :tempproduct="tempProduct"
-      @addproduct="addProduct" @updateproduct="updateProduct" @closemodal="closeModal" />
-    <DelModal :tempProduct="tempProduct" :opendelmodal="showDelModal"
-      @deleteproduct="deleteProduct" @closedelmodal="closeDelModal" />
+    <Modal :title="title" :isNew="isNew" :openmodal="showModal" :tempItem="tempProduct"
+      @additem="addProduct" @updateitem="updateProduct" @closemodal="closeModal" />
+    <DelModal :title="title" :tempProduct="tempProduct" :opendelmodal="showDelModal"
+      @deleteitem="deleteProduct" @closedelmodal="closeDelModal" />
     <div class="container">
-      <h3>Products</h3>
-      <button class="addbtn" type="button" @click="openModal('new')">新增產品</button>
+      <div class="df jc-sb ai-c">
+        <h3>Products</h3>
+        <button class="addbtn" type="button" @click="openModal('new')">新增產品</button>
+      </div>
       <table>
         <thead>
           <tr>
@@ -44,18 +46,18 @@
           </tr>
         </tbody>
       </table>
-      <Pagination :page="pagination" @updatepage="getProducts" />
+      <!-- <Pagination :page="pagination" @updatepage="getProducts" /> -->
     </div>
   </div>
 </template>
 <script>
-import Pagination from '@/components/fronted/Pagination.vue';
+// import Pagination from '@/components/fronted/Pagination.vue';
 import Modal from '@/components/backend/Modal.vue';
 import DelModal from '@/components/backend/DelModal.vue';
 
 export default {
   components: {
-    Pagination,
+    // Pagination,
     Modal,
     DelModal,
   },
@@ -71,6 +73,7 @@ export default {
       showDelModal: false,
       pagination: {},
       err_data: '',
+      title: '產品',
     };
   },
   methods: {
@@ -103,7 +106,8 @@ export default {
         })
         .catch((err) => {
           this.isLoading = false;
-          console.log(err.response.data.message);
+          this.err_data = err.response.data.message;
+          this.$bus.$emit('error', this.err_data);
         });
     },
     addProduct() {
