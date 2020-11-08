@@ -54,19 +54,18 @@
           </tr>
         </tbody>
       </table>
-      <!-- <Pagination
-      :page="pagination" @updatepage="getCoupons" /> -->
+      <Pagination :page="pagination" @updatepage="getCoupons" class="df jc-c"/>
     </div>
   </div>
 </template>
 <script>
-// import Pagination from '@/components/Pagination.vue';
+import Pagination from '@/components/fronted/Pagination.vue';
 import Modal from '@/components/backend/Modal.vue';
 import DelModal from '@/components/backend/DelModal.vue';
 
 export default {
   components: {
-    // Pagination,
+    Pagination,
     Modal,
     DelModal,
   },
@@ -83,12 +82,12 @@ export default {
         due_time: '',
       },
       isNew: false,
-      token: '',
       isLoading: false,
       pagination: {},
       showModal: false,
       showDelModal: false,
       title: '優惠券',
+      err_data: '',
     };
   },
   methods: {
@@ -104,8 +103,9 @@ export default {
           this.isLoading = false;
         })
         .catch((err) => {
+          this.err_data = err.response.data.message;
           this.isLoading = false;
-          console.log('err', err.response.data.message);
+          this.isLoading = false;
         });
     },
     getCoupon(id) {
@@ -120,8 +120,9 @@ export default {
           this.isLoading = false;
         })
         .catch((err) => {
+          this.err_data = err.response.data.message;
           this.isLoading = false;
-          console.log(err.response.data.message);
+          this.isLoading = false;
         });
     },
     addCoupon() {
@@ -132,22 +133,15 @@ export default {
           `${process.env.VUE_APP_ApiPath}/api/${process.env.VUE_APP_UUID}/admin/ec/coupon`,
           this.tempCoupon,
         )
-        .then((res) => {
-          this.isLoading = false;
-          this.tempCoupon = res.data.data;
+        .then(() => {
           this.getCoupons();
           this.showModal = false;
-          this.tempCoupon = {
-            title: '',
-            code: '',
-            percent: 100,
-            enabled: false,
-            deadline_at: '2020-10-18 23:59:59',
-          };
+          this.isLoading = false;
         })
         .catch((err) => {
+          this.err_data = err.response.data.message;
           this.isLoading = false;
-          console.log(err.response.data.message);
+          this.isLoading = false;
         });
     },
     updateCoupon(id) {
@@ -164,8 +158,9 @@ export default {
           this.showModal = false;
         })
         .catch((err) => {
+          this.err_data = err.response.data.message;
           this.isLoading = false;
-          console.log(err.response.data.message);
+          this.isLoading = false;
         });
     },
     deleteCoupon() {
@@ -174,15 +169,15 @@ export default {
         .delete(
           `${process.env.VUE_APP_ApiPath}/api/${process.env.VUE_APP_UUID}/admin/ec/coupon/${this.tempCoupon.id}`,
         )
-        .then((res) => {
-          console.log(res);
-          this.isLoading = false;
+        .then(() => {
           this.getCoupons();
           this.showDelModal = false;
+          this.isLoading = false;
         })
         .catch((err) => {
+          this.err_data = err.response.data.message;
           this.isLoading = false;
-          console.log(err.response.data.message);
+          this.isLoading = false;
         });
     },
     openModal(isNew, item) {
@@ -197,7 +192,6 @@ export default {
           this.tempCoupon = { ...item };
           const dedlineAt = this.tempCoupon.deadline.datetime.split(' ');
           [this.tempCoupon.due_date, this.tempCoupon.due_time] = dedlineAt; // 日期
-
           this.showModal = true;
           break;
         }
@@ -222,11 +216,6 @@ export default {
     },
   },
   created() {
-    this.token = document.cookie.replace(
-      /(?:(?:^|.*;\s*)MikoToken\s*=\s*([^;]*).*$)|^.*$/,
-      '$1',
-    );
-    this.axios.defaults.headers.common.Authorization = `Bearer ${this.token}`;
     this.getCoupons();
   },
 };

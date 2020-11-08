@@ -1,5 +1,6 @@
 <template>
   <div class="backend">
+    <loading loader="dots" :active.sync="isLoading"></loading>
      <DelModal :title="title" :tempItem="tempData" :opendelmodal="showDelModal"
       @deleteitem="deleteData" @closedelmodal="closeDelModal" />
     <Loading :active.sync="isLoading" />
@@ -27,26 +28,25 @@
               <img :src="item.path" alt />
             </td>
             <td>
-              <div class="">
+              <div>
                 <button type="button" @click="openModel(item)">刪除</button>
               </div>
             </td>
           </tr>
         </tbody>
       </table>
-
-      <!-- <Pagination :page="pagination" @updatepage="getFile" /> -->
+      <Pagination :page="pagination" @updatepage="getFile" class="df jc-c"/>
     </div>
   </div>
 </template>
 <script>
-// import Pagination from '@/components/Pagination.vue';
+import Pagination from '@/components/fronted/Pagination.vue';
 import DelModal from '@/components/backend/DelModal.vue';
 
 export default {
   name: 'Storage',
   components: {
-    // Pagination,
+    Pagination,
     DelModal,
   },
   data() {
@@ -60,10 +60,8 @@ export default {
         fileUploading: false,
       },
       title: '圖片',
+      err_data: '',
     };
-  },
-  created() {
-    this.getFile();
   },
   methods: {
     uploadFile() {
@@ -82,16 +80,15 @@ export default {
             },
           },
         )
-        .then((res) => {
-          this.isLoading = false;
-          this.status.fileUploading = false;
+        .then(() => {
           this.getFile();
-          console.log(res);
+          this.status.fileUploading = false;
+          this.isLoading = false;
         })
         .catch((err) => {
+          this.err_data = err.response.data.message;
           this.isLoading = false;
-          this.status.fileUploading = false;
-          console.log(err);
+          this.isLoading = false;
         });
     },
     getFile(num = 1) {
@@ -101,13 +98,14 @@ export default {
           `${process.env.VUE_APP_ApiPath}/api/${process.env.VUE_APP_UUID}/admin/storage?page=${num}`,
         )
         .then((res) => {
-          this.isLoading = false;
           this.storages = res.data.data;
           this.pagination = res.data.meta.pagination;
+          this.isLoading = false;
         })
         .catch((err) => {
+          this.err_data = err.response.data.message;
           this.isLoading = false;
-          console.log(err);
+          this.isLoading = false;
         });
     },
     deleteData() {
@@ -116,14 +114,14 @@ export default {
         .delete(
           `${process.env.VUE_APP_ApiPath}/api/${process.env.VUE_APP_UUID}/admin/storage/${this.tempData.id}`,
         )
-        .then((res) => {
-          console.log('deletesucess', res);
-          this.isLoading = false;
+        .then(() => {
           this.getFile();
           this.showDelModal = false;
+          this.isLoading = false;
         })
         .catch((err) => {
-          console.log('刪除失敗', err);
+          this.err_data = err.response.data.message;
+          this.isLoading = false;
           this.isLoading = false;
         });
     },
@@ -134,6 +132,9 @@ export default {
     closeDelModal() {
       this.showDelModal = false;
     },
+  },
+  created() {
+    this.getFile();
   },
 };
 </script>

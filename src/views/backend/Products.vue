@@ -46,18 +46,18 @@
           </tr>
         </tbody>
       </table>
-      <!-- <Pagination :page="pagination" @updatepage="getProducts" /> -->
+      <Pagination :page="pagination" @updatepage="getProducts" class="df jc-c"/>
     </div>
   </div>
 </template>
 <script>
-// import Pagination from '@/components/fronted/Pagination.vue';
+import Pagination from '@/components/fronted/Pagination.vue';
 import Modal from '@/components/backend/Modal.vue';
 import DelModal from '@/components/backend/DelModal.vue';
 
 export default {
   components: {
-    // Pagination,
+    Pagination,
     Modal,
     DelModal,
   },
@@ -124,7 +124,8 @@ export default {
         })
         .catch((err) => {
           this.isLoading = false;
-          console.log(err.response.data.message);
+          this.err_data = err.response.data.message;
+          this.isLoading = false;
         });
     },
     updateProduct(id) {
@@ -141,7 +142,8 @@ export default {
         })
         .catch((err) => {
           this.isLoading = false;
-          console.log(err.response.data.message);
+          this.err_data = err.response.data.message;
+          this.isLoading = false;
         });
       this.tempProduct = {
         imageUrl: [],
@@ -159,8 +161,9 @@ export default {
           this.getProducts();
         })
         .catch((err) => {
+          this.err_data = err.response.data.message;
           this.isLoading = false;
-          console.log(err.response.data.message);
+          this.isLoading = false;
         });
 
       this.tempProduct = {

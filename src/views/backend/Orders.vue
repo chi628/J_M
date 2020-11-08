@@ -1,8 +1,8 @@
 <template>
   <div class="backend">
-    <loading :active.sync="isLoading"></loading>
+    <loading loader="dots" :active.sync="isLoading"></loading>
     <div class="container">
-      <h1>Orders</h1>
+      <h3>Orders</h3>
       <table>
         <thead>
           <tr>
@@ -42,16 +42,15 @@
       </table>
     </div>
 
-      <Pagination
-      :page="pagination" @updatepage="getOrders" />
+      <Pagination :page="pagination" @updatepage="getOrders" class="df jc-c"/>
   </div>
 </template>
 <script>
-// import Pagination from '@/components/Pagination.vue';
+import Pagination from '@/components/fronted/Pagination.vue';
 
 export default {
   components: {
-    // Pagination,
+    Pagination,
   },
   data() {
     return {
@@ -59,6 +58,7 @@ export default {
       tempOrder: {},
       isLoading: false,
       pagination: {},
+      err_data: '',
     };
   },
   methods: {
@@ -74,8 +74,9 @@ export default {
           this.isLoading = false;
         })
         .catch((err) => {
+          this.err_data = err.response.data.message;
           this.isLoading = false;
-          console.log(err);
+          this.isLoading = false;
         });
     },
     editPaid(item) {
@@ -97,8 +98,9 @@ export default {
           this.getOrders();
           this.tempOrder = {};
         }).catch((err) => {
+          this.err_data = err.response.data.message;
           this.isLoading = false;
-          console.log(err);
+          this.isLoading = false;
         });
     },
   },
