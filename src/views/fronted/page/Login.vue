@@ -39,6 +39,7 @@ export default {
       },
       token: '',
       isLoading: false,
+      err_data: '',
     };
   },
   methods: {
@@ -48,16 +49,18 @@ export default {
       this.axios
         .post(api, this.user)
         .then((res) => {
-          this.isLoading = false;
           const { token } = res.data;
           const { expired } = res.data;
           document.cookie = `MikoToken = ${token}; expires = ${new Date(
             expired * 1000,
           )}; path=/`;
+          this.isLoading = false;
           this.$router.push('/admin');
         })
         .catch((err) => {
-          console.log(err);
+          this.err_data = err.response.data.message;
+          this.$bus.$emit('error', this.err_data);
+          this.isLoading = false;
         });
     },
   },
