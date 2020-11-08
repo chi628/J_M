@@ -2,7 +2,7 @@
   <div class="backend">
     <Modal :title="title" :isNew="isNew" :tempItem="tempCoupon" :openmodal="showModal"
       @additem="addCoupon" @updateitem="updateCoupon" @closemodal="closeModal"/>
-    <DelModal :title="title" :tempCoupon="tempCoupon" :opendelmodal="showDelModal"
+    <DelModal :title="title" :tempItem="tempCoupon" :opendelmodal="showDelModal"
       @deleteitem="deleteCoupon" @closedelmodal="closeDelModal" />
     <loading loader="dots" :active.sync="isLoading"></loading>
     <div class="container">

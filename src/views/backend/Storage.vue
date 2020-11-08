@@ -1,14 +1,19 @@
 <template>
-  <div class="storage">
+  <div class="backend">
+     <DelModal :title="title" :tempItem="tempData" :opendelmodal="showDelModal"
+      @deleteitem="deleteData" @closedelmodal="closeDelModal" />
     <Loading :active.sync="isLoading" />
     <div class="container">
-       <div class="uploadnew">
+       <div class="df jc-sb ai-c">
+         <h3>圖片管理</h3>
+         <div class="addbtn df jc-c ai-c">
         <label class="uploadbtn">上傳圖片
           <input id="customFile" style="display:none;" type="file" @change="uploadFile">
           <i class="fa fa-photo"></i>
           <i v-if="status.fileUploading" class="fas fa-spinner fa-spin"></i>
         </label>
       </div>
+       </div>
       <table>
         <thead>
           <tr>
@@ -22,7 +27,7 @@
               <img :src="item.path" alt />
             </td>
             <td>
-              <div class="storage-del">
+              <div class="">
                 <button type="button" @click="openModel(item)">刪除</button>
               </div>
             </td>
@@ -30,42 +35,19 @@
         </tbody>
       </table>
 
-      <Pagination :page="pagination" @updatepage="getFile" />
+      <!-- <Pagination :page="pagination" @updatepage="getFile" /> -->
     </div>
-    <!-- 刪除 Modal -->
-    <div class="delmodal" :class="{'show':opendelmodal}">
-      <div class="delmodal-header">
-        <h1>刪除資料</h1>
-        <div class="delmodal-header-close">
-          <button type="button" @click="opendelmodal=false">
-            <span>&times;</span>
-          </button>
-        </div>
-      </div>
-      <div class="delmodal-body">
-        <p>刪除後將無法恢復，是否確定要刪除。</p>
-      </div>
-      <div class="delmodal-footer">
-        <button
-         type="button"
-         class="delmodal-footer-close"
-         @click="opendelmodal=false">Close</button>
-        <button
-         type="button"
-         class="delmodal-footer-sure"
-         @click="deleteData">確認刪除</button>
-      </div>
-    </div>
-    <!-- Modal End -->
   </div>
 </template>
 <script>
 // import Pagination from '@/components/Pagination.vue';
+import DelModal from '@/components/backend/DelModal.vue';
 
 export default {
   name: 'Storage',
   components: {
     // Pagination,
+    DelModal,
   },
   data() {
     return {
@@ -73,11 +55,11 @@ export default {
       tempData: {},
       pagination: {},
       isLoading: false,
-      token: '',
-      opendelmodal: false,
+      showDelModal: false,
       status: {
         fileUploading: false,
       },
+      title: '圖片',
     };
   },
   created() {
@@ -138,7 +120,7 @@ export default {
           console.log('deletesucess', res);
           this.isLoading = false;
           this.getFile();
-          this.opendelmodal = false;
+          this.showDelModal = false;
         })
         .catch((err) => {
           console.log('刪除失敗', err);
@@ -147,7 +129,10 @@ export default {
     },
     openModel(item) {
       this.tempData = { ...item };
-      this.opendelmodal = true;
+      this.showDelModal = true;
+    },
+    closeDelModal() {
+      this.showDelModal = false;
     },
   },
 };

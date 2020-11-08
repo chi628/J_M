@@ -3,7 +3,7 @@
     <loading loader="dots" :active.sync="isLoading"></loading>
     <Modal :title="title" :isNew="isNew" :openmodal="showModal" :tempItem="tempProduct"
       @additem="addProduct" @updateitem="updateProduct" @closemodal="closeModal" />
-    <DelModal :title="title" :tempProduct="tempProduct" :opendelmodal="showDelModal"
+    <DelModal :title="title" :tempItem="tempProduct" :opendelmodal="showDelModal"
       @deleteitem="deleteProduct" @closedelmodal="closeDelModal" />
     <div class="container">
       <div class="df jc-sb ai-c">

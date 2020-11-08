@@ -8,28 +8,23 @@
     </div>
     <div class="modal-body df jc-c ai-c">
       <p> 是否刪除
-      <span v-if="title==='產品'">{{ tempProduct.title }}</span>
-      <span v-else-if="title==='優惠券'">{{ tempCoupon.code }}</span>
+      <span v-if="title==='產品'">{{ tempItem.title }}</span>
+      <span v-else-if="title==='優惠券'">{{ tempItem.code }}</span>
       (刪除後將無法恢復)。</p>
     </div>
     <div class="modal-footer df jc-fe">
       <button
        type="button"
        @click="closeDelModal">Close</button>
-      <button
-       v-if="title==='產品'"
+       <button
        type="button"
-       @click="deleteItem(tempProduct.id)">確認刪除</button>
-        <button
-        v-else-if="title==='優惠券'"
-       type="button"
-       @click="deleteItem(tempCoupon.id)">確認刪除</button>
+       @click="deleteItem(tempItem.id)">確認刪除</button>
     </div>
   </div>
 </template>
 <script>
 export default {
-  props: ['title', 'opendelmodal', 'tempProduct', 'tempCoupon'],
+  props: ['title', 'opendelmodal', 'tempItem'],
   methods: {
     closeDelModal() {
       this.$emit('closedelmodal');
