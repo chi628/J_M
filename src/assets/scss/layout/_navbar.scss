@@ -433,8 +433,8 @@
         }
 
         @include phone-width {
-            @include padding(top, 5px);
-            @include padding(bottom, 5px);
+            @include padding(top, 15px);
+            @include padding(bottom, 15px);
             visibility: visible;
             position: fixed;
             left: 0;
@@ -444,7 +444,7 @@
 
             button {
                 background-color: $darker-merino;
-                font-size: 20px;
+                font-size: 22px;
             }
 
             span {
