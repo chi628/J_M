@@ -2,7 +2,8 @@
     position: sticky;
     top: 0;
     z-index: 1999;
-    max-width: 100vw;
+    width: 100vw;
+    max-width: 1440px;
     padding: 10px 0;
     background-color: #fff;
 
@@ -443,6 +444,7 @@
 
             button {
                 background-color: $darker-merino;
+                font-size: 20px;
             }
 
             span {

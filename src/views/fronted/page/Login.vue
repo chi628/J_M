@@ -2,7 +2,7 @@
   <div class="login">
     <loading loader="dots" :active.sync="isLoading"></loading>
     <form class="login-form" @keyup.enter="signin()">
-      <h1>Login</h1>
+      <h3>管理人員登入</h3>
       <div>
         <label for="account">Account</label>
         <input

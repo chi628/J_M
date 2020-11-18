@@ -1,5 +1,5 @@
 <template>
-  <div class="account df jc-sb">
+  <div class="account df">
     <div class="register df fxd-c ai-c">
       <h3 class="ta-c">註冊會員 Register</h3>
       <ValidationObserver v-slot="{ invalid }">

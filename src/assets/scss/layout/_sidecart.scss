@@ -165,12 +165,14 @@
 
 .cart_footer {
     width: 100%;
+    // height: 100%;
     position: absolute;
     left: 0;
-    bottom: 0;
+    // bottom: 10px;
     box-shadow: 1px 0 2px $box-shadow;
     background-color: #fff;
     @include padding(top, 10px);
+    @include padding(bottom, 10px);
 
     .total {
         @include padding(left, 10px);
